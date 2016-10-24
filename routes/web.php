@@ -11,10 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::any('/rbac', function(){
+    $user = App\User::where('name', '=', 'admin')->first();
+
+// or eloquent's original technique
+    $user->roles()->attach(1); // id only
 });
 
 Auth::routes();
 
+Route::get('/', 'HomeController@index');
+
 Route::get('/home', 'HomeController@index');
+
+Route::get('/test',function (){
+   return view('frontend/register');
+});
+
+
+// Route master
+Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() {
+    Route::get('/', 'Master\DashboardController@index');
+});
