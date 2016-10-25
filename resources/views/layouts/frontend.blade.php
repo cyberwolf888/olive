@@ -472,6 +472,4 @@
 <script src="{{ url('assets/js/main.js') }}"></script>
 </body>
 
-
-<!-- Mirrored from devitems.com/html/facon-preview/facon/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 24 Oct 2016 03:00:19 GMT -->
 </html>
