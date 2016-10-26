@@ -32,4 +32,19 @@ Route::get('/test',function (){
 // Route master
 Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() {
     Route::get('/', 'Master\DashboardController@index');
+
+    //category route
+    Route::group(['prefix' => 'category', 'as'=>'category'], function() {
+        Route::get('/', 'Master\CategoryController@index');
+    });
+
+    //member route
+    Route::group(['prefix' => 'member', 'as'=>'member'], function() {
+        Route::get('/', 'Master\MemberController@index')->name('.manage');
+        Route::get('/create', 'Master\MemberController@create')->name('.create');
+        Route::post('/create', 'Master\MemberController@store')->name('.store');
+        Route::get('/edit/{id}', 'Master\MemberController@edit')->name('.edit');
+        Route::post('/edit/{id}', 'Master\MemberController@update')->name('.update');
+        Route::get('/detail/{id}', 'Master\MemberController@show')->name('.show');
+    });
 });

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: 25 Okt 2016 pada 03.41
--- Versi Server: 10.1.13-MariaDB
--- PHP Version: 7.0.5
+-- Host: localhost
+-- Generation Time: 26 Okt 2016 pada 11.29
+-- Versi Server: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -42,7 +42,7 @@ CREATE TABLE `category` (
 --
 
 CREATE TABLE `member` (
-  `id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `fullname` varchar(120) DEFAULT NULL,
   `phone` varchar(12) DEFAULT NULL,
@@ -52,6 +52,14 @@ CREATE TABLE `member` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `member`
+--
+
+INSERT INTO `member` (`id`, `user_id`, `fullname`, `phone`, `address`, `state`, `zip_code`, `created_at`, `updated_at`) VALUES
+(1, 10, 'I Made Hendra Wijaya', '82247464196', 'Jalan Wisnu Marga Belayu No 19', 'Bali', '82181', '2016-10-26 00:44:30', '2016-10-26 00:56:43'),
+(2, 11, 'Bedebah', '082247464196', 'Jalan raya niti mandala renon', 'Bali', '80226', '2016-10-26 01:13:36', '2016-10-26 01:13:36');
 
 -- --------------------------------------------------------
 
@@ -151,7 +159,9 @@ CREATE TABLE `role_user` (
 --
 
 INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
-(1, 1);
+(1, 1),
+(10, 2),
+(11, 2);
 
 -- --------------------------------------------------------
 
@@ -165,6 +175,7 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -173,12 +184,20 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@mail.com', '$2y$10$dciJKMX9vjwb88Wm8F1Hv.lnjyO7qy5HV6/t2LEDPJsjjph/KjwT6', 'dmG2xGBj2dFeq4Ywr59hkkxrv1sTGnSkCozo1gjiFJKUvcal8yhtW64XTNXx', '2016-10-23 23:50:07', '2016-10-24 01:35:41');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin@mail.com', '$2y$10$dciJKMX9vjwb88Wm8F1Hv.lnjyO7qy5HV6/t2LEDPJsjjph/KjwT6', 'dmG2xGBj2dFeq4Ywr59hkkxrv1sTGnSkCozo1gjiFJKUvcal8yhtW64XTNXx', 1, '2016-10-23 23:50:07', '2016-10-24 01:35:41'),
+(10, 'I Made Hendra Wijaya', 'wijaya.imd@gmail.com', '$2y$10$ROKg.x.eIPpK8a7iusnLQuCNgE9L8aIj2DP2okfiR4QRsz0y8hY4e', NULL, 1, '2016-10-26 00:44:30', '2016-10-26 01:12:19'),
+(11, 'Bedebah', 'bedebah@mail.com', '$2y$10$GqIaNwBl9E7jDU5p32t/p.f3GL9HoOnuC5tErM/f18Os1b39xOpZy', NULL, 0, '2016-10-26 01:13:36', '2016-10-26 01:15:53');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `member`
+--
+ALTER TABLE `member`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -233,6 +252,11 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `member`
+--
+ALTER TABLE `member`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -251,7 +275,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --

@@ -1,7 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-asdad
+    <main class="mn-inner inner-active-sidebar">
+        <div class="middle-content">
+
+            asdasdadas
+
+        </div>
+    </main>
 @endsection
 
 @push('plugin_scripts')

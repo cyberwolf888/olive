@@ -30,4 +30,10 @@ class User extends Authenticatable
     ];
 
     protected static $roleProfile = 'user';
+
+    public static function getStatus($index)
+    {
+        $status = ['1'=>'Active','0'=>'Deactive','2'=>'Deleted'];
+        return $status[$index];
+    }
 }
