@@ -100,7 +100,10 @@ class MemberController extends Controller
     public function show($id)
     {
         $model = Member::with('user')->findOrFail($id);
-        dd($model);
+
+        return view('master/member/detail',[
+            'model'=>$model
+        ]);
     }
 
     /**
