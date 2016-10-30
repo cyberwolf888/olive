@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $model = Product::all();
+        return view('master/product/manage',[
+           'model'=>$model
+        ]);
     }
 
     /**
@@ -26,7 +30,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $model = new Product();
+        return view('master/product/form',[
+            'model'=>$model,
+            'update'=>false
+        ]);
     }
 
     /**

@@ -52,4 +52,14 @@ Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() 
         Route::post('/edit/{id}', 'Master\CategoryController@update')->name('.update');
         Route::get('/detail/{id}', 'Master\CategoryController@show')->name('.show');
     });
+
+    //product route
+    Route::group(['prefix' => 'product', 'as'=>'product'], function() {
+        Route::get('/', 'Master\ProductController@index')->name('.manage');
+        Route::get('/create', 'Master\ProductController@create')->name('.create');
+        Route::post('/create', 'Master\ProductController@store')->name('.store');
+        Route::get('/edit/{id}', 'Master\ProductController@edit')->name('.edit');
+        Route::post('/edit/{id}', 'Master\ProductController@update')->name('.update');
+        Route::get('/detail/{id}', 'Master\ProductController@show')->name('.show');
+    });
 });
