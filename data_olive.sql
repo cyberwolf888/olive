@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 27 Okt 2016 pada 11.15
+-- Generation Time: 30 Okt 2016 pada 08.42
 -- Versi Server: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -34,6 +34,14 @@ CREATE TABLE `category` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `category`
+--
+
+INSERT INTO `category` (`id`, `name`, `description`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'Pant', 'asdas asdsa dsa dsadasd', 'images/category/79cff331953a06e42b86a9125a45b0eb.jpeg', '2016-10-29 23:14:32', '2016-10-29 23:14:32'),
+(2, 'Shoes', 'Sendal paling sakti', 'images/category/a60ba1a7a56c9e00252baebe89d62c12.jpeg', '2016-10-29 23:17:58', '2016-10-29 23:30:24');
 
 -- --------------------------------------------------------
 
@@ -261,7 +269,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `member`
 --
