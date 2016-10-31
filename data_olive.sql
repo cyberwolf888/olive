@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: 31 Okt 2016 pada 00.54
--- Versi Server: 10.1.13-MariaDB
--- PHP Version: 7.0.5
+-- Host: localhost
+-- Generation Time: 31 Okt 2016 pada 11.03
+-- Versi Server: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -137,7 +137,7 @@ CREATE TABLE `permission_role` (
 CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
-  `name` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `description` text NOT NULL,
   `price` float NOT NULL,
   `discount` float NOT NULL,
@@ -147,6 +147,13 @@ CREATE TABLE `product` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `product`
+--
+
+INSERT INTO `product` (`id`, `category_id`, `name`, `description`, `price`, `discount`, `isSale`, `stock`, `available`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Celana Bedebah', 'Celana paling keren', 1200000, 12, '1', 12, '1', '2016-10-30 22:11:10', '2016-10-30 22:11:10');
 
 -- --------------------------------------------------------
 
@@ -356,7 +363,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `product_detail`
 --

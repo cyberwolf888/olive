@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -45,7 +46,25 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:category|max:255',
+            'description' => 'required|max:255',
+            'price' => 'required|numeric',
+            'stock' => 'required|numeric',
+            'discount' => 'required|numeric',
+            'available' => 'required',
+        ]);
+        $model = new Product();
+        $model->category_id = $request->category_id;
+        $model->name = $request->name;
+        $model->price = $request->price;
+        $model->description = $request->description;
+        $model->stock = $request->stock;
+        $model->discount = $request->discount;
+        $model->available = $request->available == 'on' ? 1 : 0;
+        $model->save();
+
+        return redirect()->route('product.manage')->with('success', 'Add new product!');
     }
 
     /**
