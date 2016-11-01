@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Master;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductDetail;
+use App\Models\ProductImages;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -54,6 +56,7 @@ class ProductController extends Controller
             'discount' => 'required|numeric',
             'available' => 'required',
         ]);
+
         $model = new Product();
         $model->category_id = $request->category_id;
         $model->name = $request->name;
@@ -61,9 +64,17 @@ class ProductController extends Controller
         $model->description = $request->description;
         $model->stock = $request->stock;
         $model->discount = $request->discount;
-        $model->available = $request->available == 'on' ? 1 : 0;
+        $model->available = $request->available;
         $model->save();
 
+        $count = count($request->label);
+        for ($i=0; $i<$count; $i++){
+            $detail = new ProductDetail();
+            $detail->product_id = $model->id;
+            $detail->label = $request->label[$i];
+            $detail->value = $request->value[$i];
+            $detail->save();
+        }
         return redirect()->route('product.manage')->with('success', 'Add new product!');
     }
 
@@ -86,7 +97,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $model = Product::with('product_detail')->find($id);
+        return view('master/product/form',[
+            'model'=>$model,
+            'update'=>true
+        ]);
     }
 
     /**
@@ -98,7 +113,34 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:category|max:255',
+            'description' => 'required|max:255',
+            'price' => 'required|numeric',
+            'stock' => 'required|numeric',
+            'discount' => 'required|numeric',
+            'available' => 'required',
+        ]);
+        $model = Product::findOrfail($id);
+        $model->category_id = $request->category_id;
+        $model->name = $request->name;
+        $model->price = $request->price;
+        $model->description = $request->description;
+        $model->stock = $request->stock;
+        $model->discount = $request->discount;
+        $model->available = $request->available;
+        $model->save();
+
+        ProductDetail::where('product_id', $model->id)->delete();
+        $count = count($request->label);
+        for ($i=0; $i<$count; $i++){
+            $detail = new ProductDetail();
+            $detail->product_id = $model->id;
+            $detail->label = $request->label[$i];
+            $detail->value = $request->value[$i];
+            $detail->save();
+        }
+        return redirect()->route('product.manage')->with('success', 'Update product!');
     }
 
     /**
@@ -110,5 +152,20 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function manage_gallery($id)
+    {
+        $model = ProductImages::all();
+
+        return view('master/product/manage_gallery',[
+            'model'=>$model
+        ]);
+
+    }
+
+    public function create_gallery()
+    {
+
     }
 }

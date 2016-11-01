@@ -20,22 +20,14 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Name</th>
-                                <th>Stock</th>
-                                <th>Price</th>
-                                <th>Discount</th>
-                                <th>Available</th>
+                                <th>Image</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
                                 <th>No</th>
-                                <th>Name</th>
-                                <th>Stock</th>
-                                <th>Price</th>
-                                <th>Discount</th>
-                                <th>Available</th>
+                                <th>Image</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
@@ -44,15 +36,10 @@
                             @foreach($model as $row)
                                 <tr>
                                     <td>{{ $no }}</td>
-                                    <td>{{ $row->name }}</td>
-                                    <td>{{ $row->stock }}</td>
-                                    <td>{{ $row->price }}</td>
-                                    <td>{{ $row->discount }}</td>
-                                    <td>{{ $row->available }}</td>
+                                    <td>{{ $row->image }}</td>
                                     <td>
                                         <a href="{{ url(route('product.show', ['id' => $row->id])) }}" class="btn-floating blue" style="opacity: 1;"><i class="material-icons">subject</i></a>
                                         <a href="{{ url(route('product.edit', ['id' => $row->id])) }}" class="btn-floating orange" style="opacity: 1;"><i class="material-icons">mode_edit</i></a>
-                                        <a href="{{ url(route('product.gallery.manage', ['id' => $row->id])) }}" class="btn-floating green" style="opacity: 1;"><i class="material-icons">perm_media</i></a>
                                     </td>
                                 </tr>
                                 <?php $no++; ?>

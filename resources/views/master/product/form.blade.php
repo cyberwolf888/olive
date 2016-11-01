@@ -63,7 +63,7 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    {!! Form::checkbox('available', $model->available,true,['class'=>'filled-in','id'=>'available']) !!}
+                                    {!! Form::select('available', ['1'=>'Enable','0'=>'Disable'], $model->available) !!}
                                     {!! Form::label('available', 'Available') !!}
                                 </div>
                             </div>
@@ -75,26 +75,44 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="row">
-                            <div class="input_fields_wrap">
-                                <div class="row">
-                                    <div class="col m5">
-                                        <div class="form-group">
-                                            <button type="button" class="btn btn-success add_field_button">Add More Fields</button>
+                            @if($update == 0)
+                                <div class="input_fields_wrap">
+                                    <div class="row">
+                                        <div class="col m5">
+                                            <div class="form-group">
+                                                <button type="button" class="btn btn-success add_field_button">Add More Fields</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s5">
+                                            <i class="material-icons prefix">delete</i>
+                                            {!! Form::select('label[]', ['Size'=>'Size','Color'=>'Color','Material'=>'Material']) !!}
+                                            {!! Form::label('label[]', 'Label') !!}
+                                        </div>
+                                        <div class="input-field col s7">
+                                            {!! Form::text('value[]', null,['class'=>'validate','required'=>'','aria-required'=>'true']) !!}
+                                            {!! Form::label('label[]', 'Value') !!}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="input-field col s5">
-                                        <i class="material-icons prefix">delete</i>
-                                        {!! Form::select('category_id', App\Models\Category::pluck('name','id'), $model->category_id) !!}
-                                        {!! Form::label('category_id', 'Key') !!}
+                            @else
+                                <div class="input_fields_wrap">
+                                    @foreach($model->product_detail as $detail)
+                                    <div class="row">
+                                        <div class="input-field col s5">
+                                            <i class="material-icons prefix">delete</i>
+                                            {!! Form::select('label[]', ['Size'=>'Size','Color'=>'Color','Material'=>'Material'], $detail->label) !!}
+                                            {!! Form::label('label[]', 'Label') !!}
+                                        </div>
+                                        <div class="input-field col s7">
+                                            {!! Form::text('value[]', $detail->value, ['class'=>'validate','required'=>'','aria-required'=>'true']) !!}
+                                            {!! Form::label('label[]', 'Value') !!}
+                                        </div>
                                     </div>
-                                    <div class="input-field col s7">
-                                        <input id="icon_telephone" type="tel" class="validate">
-                                        <label for="icon_telephone">Value</label>
-                                    </div>
+                                    @endforeach
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -127,12 +145,12 @@
                 $(wrapper).append('<div class="row">' +
                         '<div class="input-field col s5">' +
                         '<i class="material-icons prefix remove_field">delete</i>' +
-                        '<?php echo Form::select('category_id', App\Models\Category::pluck('name','id'), $model->category_id); ?>' +
-                        '<?php echo Form::label('category_id', 'Key'); ?>' +
+                        '<?php echo Form::select('label[]', ['Size'=>'Size','Color'=>'Color','Material'=>'Material']); ?>' +
+                        '<?php echo Form::label('label[]', 'Label'); ?>' +
                         '</div> ' +
                         '<div class="input-field col s7">' +
-                        '<input id="icon_telephone" type="tel" class="validate"> ' +
-                        '<label for="icon_telephone">Value</label>' +
+                        '<?php echo Form::text('value[]', null,['class'=>'validate','required'=>'','aria-required'=>'true']); ?> ' +
+                        '<?php echo Form::label('label[]', 'Value'); ?>' +
                         '</div>' +
                         '</div>' ); //add input box
                 $('select').material_select();

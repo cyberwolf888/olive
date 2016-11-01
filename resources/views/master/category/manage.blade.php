@@ -39,7 +39,7 @@
                                 <tr>
                                     <td>{{ $no }}</td>
                                     <td>{{ $row->name }}</td>
-                                    <td>{{ $row->description }}</td>
+                                    <td>{{ date('d F Y',strtotime($row->created_at)) }}</td>
                                     <td>
                                         <a href="{{ url(route('category.show', ['id' => $row->id])) }}" class="btn-floating blue" style="opacity: 1;"><i class="material-icons">subject</i></a>
                                         <a href="{{ url(route('category.edit', ['id' => $row->id])) }}" class="btn-floating orange" style="opacity: 1;"><i class="material-icons">mode_edit</i></a>
