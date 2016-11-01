@@ -159,13 +159,24 @@ class ProductController extends Controller
         $model = ProductImages::all();
 
         return view('master/product/manage_gallery',[
+            'id' => $id,
             'model'=>$model
         ]);
 
     }
 
-    public function create_gallery()
+    public function create_gallery($id)
     {
+        $model = new ProductImages();
 
+        return view('master/product/form_images',[
+            'id'=>$id,
+            'model'=>$model
+        ]);
+    }
+
+    public function store_gallery(Request $request, $id)
+    {
+        dd($request->all());
     }
 }

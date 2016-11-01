@@ -15,7 +15,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">Manage Product</span>
-                        <a class="waves-effect waves-light btn" href="{{ url(route('product.create')) }}"><i class="material-icons left">open_in_new</i>Add New Data</a><br>
+                        <a class="waves-effect waves-light btn" href="{{ url(route('product.gallery.create',['id' => $id])) }}"><i class="material-icons left">open_in_new</i>Add New Data</a><br>
                         <table id="example" class="display responsive-table datatable-example">
                             <thead>
                             <tr>

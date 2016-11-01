@@ -61,6 +61,8 @@ Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() 
         Route::get('/edit/{id}', 'Master\ProductController@edit')->name('.edit');
         Route::post('/edit/{id}', 'Master\ProductController@update')->name('.update');
         Route::get('/gallery/manage/{id}', 'Master\ProductController@manage_gallery')->name('.gallery.manage');
+        Route::get('/gallery/create/{id}', 'Master\ProductController@create_gallery')->name('.gallery.create');
+        Route::post('/gallery/create/{id}', 'Master\ProductController@store_gallery')->name('.gallery.store');
         Route::get('/detail/{id}', 'Master\ProductController@show')->name('.show');
     });
 });
