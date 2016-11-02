@@ -36,10 +36,9 @@
                             @foreach($model as $row)
                                 <tr>
                                     <td>{{ $no }}</td>
-                                    <td>{{ $row->image }}</td>
+                                    <td><img src="{{ url('storage/app/'.$row->image) }}" class="circle" width="100px" height="100px"></td>
                                     <td>
-                                        <a href="{{ url(route('product.show', ['id' => $row->id])) }}" class="btn-floating blue" style="opacity: 1;"><i class="material-icons">subject</i></a>
-                                        <a href="{{ url(route('product.edit', ['id' => $row->id])) }}" class="btn-floating orange" style="opacity: 1;"><i class="material-icons">mode_edit</i></a>
+                                        <a href="{{ url(route('product.gallery.destroy', ['id' => $row->id])) }}" class="btn-floating red" style="opacity: 1;"><i class="material-icons">delete</i></a>
                                     </td>
                                 </tr>
                                 <?php $no++; ?>

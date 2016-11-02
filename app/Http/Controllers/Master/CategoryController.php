@@ -49,7 +49,7 @@ class CategoryController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:category|max:255',
             'description' => 'required|max:255',
-            'image' => 'required'
+            'image' => 'required|image'
         ]);
         $model = new Category();
         $path = $request->file('image')->storeAs('images/category',md5($request->name).'.'.$request->image->extension());

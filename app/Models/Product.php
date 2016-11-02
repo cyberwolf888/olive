@@ -12,4 +12,14 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\ProductDetail', 'product_id');
     }
+
+    public function product_images()
+    {
+        return $this->hasMany('App\Models\ProductImages', 'product_id');
+    }
+
+    public static function getImage($id)
+    {
+        return ProductImages::where('product_id',$id)->first();
+    }
 }

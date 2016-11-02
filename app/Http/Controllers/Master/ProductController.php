@@ -8,8 +8,10 @@ use App\Models\ProductDetail;
 use App\Models\ProductImages;
 use Illuminate\Http\Request;
 
+use Image;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -86,7 +88,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        //TODO detail product
     }
 
     /**
@@ -156,6 +158,7 @@ class ProductController extends Controller
 
     public function manage_gallery($id)
     {
+        $product = Product::findORfail($id);
         $model = ProductImages::all();
 
         return view('master/product/manage_gallery',[
@@ -177,6 +180,25 @@ class ProductController extends Controller
 
     public function store_gallery(Request $request, $id)
     {
-        dd($request->all());
+        $this->validate($request, [
+            'image' => 'required|image'
+        ]);
+        $model = new ProductImages();
+        //$path = $request->file('image')->storeAs('images/product/'.$id.'/',md5(str_random(12)).'.'.$request->image->extension());
+        $path = 'storage/app/images/product/'.$id.'/';
+        $file = Image::make($request->file('image'))->resize(500, 500)->encode('jpg', 80)->save($path.md5(str_random(12)).'.jpg');
+        $model->product_id = $id;
+        $model->image = 'images/product/'.$id.'/'.$file->basename;
+        $model->save();
+        return redirect()->route('product.gallery.manage',$id)->with('success', 'New Image!');
+    }
+
+    public function destroy_gallery($id)
+    {
+        $model = ProductImages::findOrFail($id);
+        $product_id = $model->product_id;
+        Storage::delete($model->image);
+        $model->delete();
+        return redirect()->route('product.gallery.manage',$product_id);
     }
 }

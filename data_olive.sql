@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 31 Okt 2016 pada 11.03
+-- Generation Time: 02 Nov 2016 pada 10.57
 -- Versi Server: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -41,7 +41,8 @@ CREATE TABLE `category` (
 
 INSERT INTO `category` (`id`, `name`, `description`, `image`, `created_at`, `updated_at`) VALUES
 (1, 'Pant', 'asdas asdsa dsa dsadasd', 'images/category/79cff331953a06e42b86a9125a45b0eb.jpeg', '2016-10-29 23:14:32', '2016-10-29 23:14:32'),
-(2, 'Shoes', 'Sendal paling sakti', 'images/category/a60ba1a7a56c9e00252baebe89d62c12.jpeg', '2016-10-29 23:17:58', '2016-10-29 23:30:24');
+(2, 'Shoes', 'Sendal paling sakti', 'images/category/a60ba1a7a56c9e00252baebe89d62c12.jpeg', '2016-10-29 23:17:58', '2016-10-29 23:30:24'),
+(3, 'Bedebah', 'Category bedebah', 'images/category/712dcd53dbebe8b7a2ce5f35ff17daa5.jpeg', '2016-10-31 18:14:04', '2016-10-31 18:14:04');
 
 -- --------------------------------------------------------
 
@@ -153,7 +154,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `category_id`, `name`, `description`, `price`, `discount`, `isSale`, `stock`, `available`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Celana Bedebah', 'Celana paling keren', 1200000, 12, '1', 12, '1', '2016-10-30 22:11:10', '2016-10-30 22:11:10');
+(1, 2, 'Celana Awesome', 'Celana paliing awesome', 120000, 0, '1', 12, '0', '2016-10-31 18:48:47', '2016-10-31 19:46:27'),
+(2, 1, 'Celena Bedebah', 'Celana paling bedebah', 130000, 10, '1', 12, '1', '2016-10-31 18:51:47', '2016-10-31 18:51:47');
 
 -- --------------------------------------------------------
 
@@ -170,6 +172,18 @@ CREATE TABLE `product_detail` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `product_detail`
+--
+
+INSERT INTO `product_detail` (`id`, `product_id`, `label`, `value`, `created_at`, `updated_at`) VALUES
+(4, 2, 'Size', '31', '2016-10-31 18:51:47', '2016-10-31 18:51:47'),
+(5, 2, 'Color', 'Blue', '2016-10-31 18:51:47', '2016-10-31 18:51:47'),
+(6, 2, 'Material', 'Denim', '2016-10-31 18:51:47', '2016-10-31 18:51:47'),
+(10, 1, 'Size', '32', '2016-10-31 19:46:27', '2016-10-31 19:46:27'),
+(11, 1, 'Color', 'Black', '2016-10-31 19:46:27', '2016-10-31 19:46:27'),
+(12, 1, 'Material', 'Denim', '2016-10-31 19:46:27', '2016-10-31 19:46:27');
+
 -- --------------------------------------------------------
 
 --
@@ -183,6 +197,14 @@ CREATE TABLE `product_images` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `product_images`
+--
+
+INSERT INTO `product_images` (`id`, `product_id`, `image`, `created_at`, `updated_at`) VALUES
+(3, 1, 'images/product/1/ae0e21197b0cd68abc6fe9ab7ea341b5.jpg', '2016-11-01 20:50:39', '2016-11-01 20:50:39'),
+(4, 1, 'images/product/1/a33c10e5f753643bd3627a860309ef6a.jpg', '2016-11-01 20:51:17', '2016-11-01 20:51:17');
 
 -- --------------------------------------------------------
 
@@ -343,7 +365,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `member`
 --
@@ -363,17 +385,17 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `product_detail`
 --
 ALTER TABLE `product_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `roles`
 --

@@ -63,6 +63,7 @@ Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() 
         Route::get('/gallery/manage/{id}', 'Master\ProductController@manage_gallery')->name('.gallery.manage');
         Route::get('/gallery/create/{id}', 'Master\ProductController@create_gallery')->name('.gallery.create');
         Route::post('/gallery/create/{id}', 'Master\ProductController@store_gallery')->name('.gallery.store');
+        Route::get('/gallery/delete/{id}', 'Master\ProductController@destroy_gallery')->name('.gallery.destroy');
         Route::get('/detail/{id}', 'Master\ProductController@show')->name('.show');
     });
 });
