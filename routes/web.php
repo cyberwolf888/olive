@@ -24,9 +24,7 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/test',function (){
-   return view('frontend/register');
-});
+Route::get('/product/{id}', 'ProductController@show')->name('front_product');
 
 
 // Route master

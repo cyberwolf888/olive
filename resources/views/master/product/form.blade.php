@@ -63,6 +63,12 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
+                                    {!! Form::select('isSale', ['1'=>'Yes','0'=>'No'], $model->isSale) !!}
+                                    {!! Form::label('isSale', 'Is Sale?') !!}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
                                     {!! Form::select('available', ['1'=>'Enable','0'=>'Disable'], $model->available) !!}
                                     {!! Form::label('available', 'Available') !!}
                                 </div>

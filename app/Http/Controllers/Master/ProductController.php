@@ -9,6 +9,7 @@ use App\Models\ProductImages;
 use Illuminate\Http\Request;
 
 use Image;
+use File;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -66,6 +67,7 @@ class ProductController extends Controller
         $model->description = $request->description;
         $model->stock = $request->stock;
         $model->discount = $request->discount;
+        $model->isSale = $request->isSale;
         $model->available = $request->available;
         $model->save();
 
@@ -77,7 +79,7 @@ class ProductController extends Controller
             $detail->value = $request->value[$i];
             $detail->save();
         }
-        return redirect()->route('product.manage')->with('success', 'Add new product!');
+        return redirect()->route('product.gallery.manage',$model->id)->with('success', 'Add new product!');
     }
 
     /**
@@ -88,7 +90,11 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //TODO detail product
+        $model = Product::findOrFail($id);
+
+        return view('master/product/detail',[
+            'model'=>$model
+        ]);
     }
 
     /**
@@ -130,6 +136,7 @@ class ProductController extends Controller
         $model->description = $request->description;
         $model->stock = $request->stock;
         $model->discount = $request->discount;
+        $model->isSale = $request->isSale;
         $model->available = $request->available;
         $model->save();
 
@@ -159,7 +166,7 @@ class ProductController extends Controller
     public function manage_gallery($id)
     {
         $product = Product::findORfail($id);
-        $model = ProductImages::all();
+        $model = ProductImages::where('product_id',$id)->get();
 
         return view('master/product/manage_gallery',[
             'id' => $id,
@@ -186,7 +193,10 @@ class ProductController extends Controller
         $model = new ProductImages();
         //$path = $request->file('image')->storeAs('images/product/'.$id.'/',md5(str_random(12)).'.'.$request->image->extension());
         $path = 'storage/app/images/product/'.$id.'/';
-        $file = Image::make($request->file('image'))->resize(500, 500)->encode('jpg', 80)->save($path.md5(str_random(12)).'.jpg');
+        if(!File::exists($path)) {
+            File::makeDirectory($path.$id, $mode = 0777, true, true);
+        }
+        $file = Image::make($request->file('image'))->resize(470, 607)->encode('jpg', 80)->save($path.md5(str_random(12)).'.jpg');
         $model->product_id = $id;
         $model->image = 'images/product/'.$id.'/'.$file->basename;
         $model->save();

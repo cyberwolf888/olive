@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Facon V-4</title>
+    <title>{{ config('app.name', 'Olive') }}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon -->
@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="{{ url('assets/style.css') }}">
     <!-- Responsive css -->
     <link rel="stylesheet" href="{{ url('assets/css/responsive.css') }}">
+    @stack('plugin_css')
     <!-- Modernizr css -->
     <script src="{{ url('assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
 </head>
@@ -52,62 +53,9 @@
                             <!-- nav menu start -->
                             <nav class="menu text-uppercase">
                                 <ul>
-                                    <li class="active">
-                                        <a href="#"><span>home</span></a>
-                                        <ul class="home-index text-upperxase text-left">
-                                            <li><a href="index-2.html">home-1</a></li>
-                                            <li><a href="index-3.html">home-2</a></li>
-                                            <li><a href="index-4.html">home-3</a></li>
-                                            <li><a href="index-5.html">home-4</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="shop.html" class="mega-active">men</a>
-                                        <div class="megamenu-area home3">
-                                            <ul class="megamenu">
-                                                <li class="single-item">
-                                                    <ul class="megamenu-list">
-                                                        <li class="mega-title"><a href="#">men</a></li>
-                                                        <li><a href="#">jeckets</a></li>
-                                                        <li><a href="#">blazers</a></li>
-                                                        <li><a href="#">suits</a></li>
-                                                        <li><a href="#">trousers</a></li>
-                                                        <li><a href="#">jeans</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-item">
-                                                    <ul class="megamenu-list">
-                                                        <li class="mega-title"><a href="#">women</a></li>
-                                                        <li><a href="#">tees & tanks</a></li>
-                                                        <li><a href="#">pants & jeans</a></li>
-                                                        <li><a href="#">skirts & dresses</a></li>
-                                                        <li><a href="#">accessories</a></li>
-                                                        <li><a href="#">shoes</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-item">
-                                                    <ul class="megamenu-list">
-                                                        <li class="mega-title"><a href="#">accessories</a></li>
-                                                        <li><a href="#">bags</a></li>
-                                                        <li><a href="#">shoes</a></li>
-                                                        <li><a href="#">gift card</a></li>
-                                                        <li><a href="#">jewellery</a></li>
-                                                        <li><a href="#">jackets</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li><a href="shop.html">women</a></li>
-                                    <li><a href="shop.html">Accessories</a></li>
-                                    <li><a href="#">blog</a>
-                                        <ul class="home-index text-upperxase text-left">
-                                            <li><a href="blog.html">Blog Details</a>
-                                            </li>
-                                            <li><a href="blog-left-sidebar.html">Blog left sidebar</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">pages</a>
+                                    <li><a href="{{ url('/') }}">Home</a></li>
+                                    <li><a href="{{ url('/sale') }}">Sale</a></li>
+                                    <li><a href="#">Category</a>
                                         <ul class="home-index text-upperxase text-left">
                                             <li><a href="shop.html">Shop</a></li>
                                             <li><a href="product-detail.html">Product Detail</a></li>
@@ -116,7 +64,14 @@
                                             <li><a href="wishlist.html">Wishlist</a></li>
                                         </ul>
                                     </li>
+                                    <li><a href="shop.html">New Item</a></li>
                                     <li><a href="contact.html">contact</a></li>
+                                    @role('admin')
+                                        <li><a href="{{ url('/master') }}">Administrator</a></li>
+                                    @endrole
+                                    @role('member')
+                                        <li><a href="{{ url('/master') }}">My Account</a></li>
+                                    @endrole
                                 </ul>
                             </nav>
                             <!-- end nav menu -->
@@ -466,10 +421,12 @@
 <script src="{{ url('assets/js/jquery.scrollUp.js') }}"></script>
 <!-- Slick js -->
 <script src="{{ url('assets/js/slick.min.js') }}"></script>
+@stack('plugin_scripts')
 <!-- Plugin js -->
 <script src="{{ url('assets/js/plugins.js') }}"></script>
 <!-- Main js -->
 <script src="{{ url('assets/js/main.js') }}"></script>
+@stack('scripts')
 </body>
 
 </html>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 02 Nov 2016 pada 10.57
+-- Generation Time: 04 Nov 2016 pada 09.55
 -- Versi Server: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -42,7 +42,8 @@ CREATE TABLE `category` (
 INSERT INTO `category` (`id`, `name`, `description`, `image`, `created_at`, `updated_at`) VALUES
 (1, 'Pant', 'asdas asdsa dsa dsadasd', 'images/category/79cff331953a06e42b86a9125a45b0eb.jpeg', '2016-10-29 23:14:32', '2016-10-29 23:14:32'),
 (2, 'Shoes', 'Sendal paling sakti', 'images/category/a60ba1a7a56c9e00252baebe89d62c12.jpeg', '2016-10-29 23:17:58', '2016-10-29 23:30:24'),
-(3, 'Bedebah', 'Category bedebah', 'images/category/712dcd53dbebe8b7a2ce5f35ff17daa5.jpeg', '2016-10-31 18:14:04', '2016-10-31 18:14:04');
+(3, 'Bedebah', 'Category bedebah', 'images/category/712dcd53dbebe8b7a2ce5f35ff17daa5.jpeg', '2016-10-31 18:14:04', '2016-10-31 18:14:04'),
+(4, 'T-Shirt', 'Awesome T-Shirt', 'images/category/2ff227989aa79adad4352223e419a145.jpeg', '2016-11-03 19:28:56', '2016-11-03 19:28:56');
 
 -- --------------------------------------------------------
 
@@ -154,8 +155,9 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `category_id`, `name`, `description`, `price`, `discount`, `isSale`, `stock`, `available`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Celana Awesome', 'Celana paliing awesome', 120000, 0, '1', 12, '0', '2016-10-31 18:48:47', '2016-10-31 19:46:27'),
-(2, 1, 'Celena Bedebah', 'Celana paling bedebah', 130000, 10, '1', 12, '1', '2016-10-31 18:51:47', '2016-10-31 18:51:47');
+(1, 2, 'Celana Awesome', 'Celana paliing awesome', 120000, 0, '0', 12, '1', '2016-10-31 18:48:47', '2016-11-03 19:23:49'),
+(2, 1, 'Celena Bedebah', 'Celana paling bedebah', 130000, 10, '1', 12, '1', '2016-10-31 18:51:47', '2016-10-31 18:51:47'),
+(3, 4, 'Jean Shirt Awesome', 'The most awesome t-shirt in the world', 230000, 0, '1', 12, '1', '2016-11-03 19:29:52', '2016-11-03 19:35:08');
 
 -- --------------------------------------------------------
 
@@ -180,9 +182,12 @@ INSERT INTO `product_detail` (`id`, `product_id`, `label`, `value`, `created_at`
 (4, 2, 'Size', '31', '2016-10-31 18:51:47', '2016-10-31 18:51:47'),
 (5, 2, 'Color', 'Blue', '2016-10-31 18:51:47', '2016-10-31 18:51:47'),
 (6, 2, 'Material', 'Denim', '2016-10-31 18:51:47', '2016-10-31 18:51:47'),
-(10, 1, 'Size', '32', '2016-10-31 19:46:27', '2016-10-31 19:46:27'),
-(11, 1, 'Color', 'Black', '2016-10-31 19:46:27', '2016-10-31 19:46:27'),
-(12, 1, 'Material', 'Denim', '2016-10-31 19:46:27', '2016-10-31 19:46:27');
+(13, 1, 'Size', '32', '2016-11-03 19:23:49', '2016-11-03 19:23:49'),
+(14, 1, 'Color', 'Black', '2016-11-03 19:23:49', '2016-11-03 19:23:49'),
+(15, 1, 'Material', 'Denim', '2016-11-03 19:23:49', '2016-11-03 19:23:49'),
+(19, 3, 'Size', '22', '2016-11-03 19:35:08', '2016-11-03 19:35:08'),
+(20, 3, 'Color', 'Blue', '2016-11-03 19:35:08', '2016-11-03 19:35:08'),
+(21, 3, 'Material', 'Canvas', '2016-11-03 19:35:08', '2016-11-03 19:35:08');
 
 -- --------------------------------------------------------
 
@@ -203,8 +208,11 @@ CREATE TABLE `product_images` (
 --
 
 INSERT INTO `product_images` (`id`, `product_id`, `image`, `created_at`, `updated_at`) VALUES
-(3, 1, 'images/product/1/ae0e21197b0cd68abc6fe9ab7ea341b5.jpg', '2016-11-01 20:50:39', '2016-11-01 20:50:39'),
-(4, 1, 'images/product/1/a33c10e5f753643bd3627a860309ef6a.jpg', '2016-11-01 20:51:17', '2016-11-01 20:51:17');
+(6, 2, 'images/product/2/7bcd81db0a1e69cd77b1d66e5eb9c0b1.jpg', '2016-11-03 19:23:25', '2016-11-03 19:23:25'),
+(7, 1, 'images/product/1/93660c8d44ec746cadca946cc3569be7.jpg', '2016-11-03 19:24:09', '2016-11-03 19:24:09'),
+(8, 1, 'images/product/1/48df51562a350349d55115e507cca6ec.jpg', '2016-11-03 19:24:18', '2016-11-03 19:24:18'),
+(9, 3, 'images/product/3/678c9e38b0d1c02a9b7821543ea6db40.jpg', '2016-11-03 19:34:09', '2016-11-03 19:34:09'),
+(10, 3, 'images/product/3/3a24043c20791a2e2e5a896d9526005b.jpg', '2016-11-03 19:34:23', '2016-11-03 19:34:23');
 
 -- --------------------------------------------------------
 
@@ -365,7 +373,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `member`
 --
@@ -385,17 +393,17 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `product_detail`
 --
 ALTER TABLE `product_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `roles`
 --
