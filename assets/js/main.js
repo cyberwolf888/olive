@@ -168,26 +168,5 @@ Header Top JS
         $button.parent().find("input").val(newVal);
     });
 
-/*----------------------------
- Slick carousel active
------------------------------- */
-    $('.single-thumbnail-big').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        fade: true,
-        asNavFor: '.single-thumbnail-small'
-    });
-    $('.single-thumbnail-small').slick({
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        asNavFor: '.single-thumbnail-big',
-        dots: false,
-        centerMode: true,
-        focusOnSelect: true,
-        arrows: true,
-        prevArrow: '<button type="button" class="custom-prev"><i class="fa fa-long-arrow-left"></i></button>',
-        nextArrow: '<button type="button" class="custom-next"><i class="fa fa-long-arrow-right"></i></button>'
-    });
     
 })(jQuery);

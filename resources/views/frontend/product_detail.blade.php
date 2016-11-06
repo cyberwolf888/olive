@@ -46,38 +46,20 @@
                         <div class="single-item-detail clearfix">
                             <div class="product-thumbnail">
                                 <div class="single-thumbnail-big">
-                                    <a href="{{ url('assets') }}/img/products/detail-thumb.jpg" data-lightbox="{{ url('assets') }}/img/products/detail-thumb.jpg" data-title="High Neck Bodycon Dress">
-                                        <img src="{{ url('assets') }}/img/products/detail-thumb.jpg" alt="">
+                                    @foreach($images as $img)
+                                    <a href="{{ url('storage/app/'.$img->image) }}" data-lightbox="{{ url('storage/app/'.$img->image) }}" data-title="High Neck Bodycon Dress">
+                                        <img src="{{ url('storage/app/'.$img->image) }}" alt="">
                                     </a>
-                                    <a href="{{ url('assets') }}/img/products/detail-1.jpg" data-lightbox="{{ url('assets') }}/img/products/detail-1.jpg" data-title="High Neck Bodycon Dress">
-                                        <img src="{{ url('assets') }}/img/products/detail-1.jpg" alt="">
-                                    </a>
-                                    <a href="{{ url('assets') }}/img/products/detail-2.jpg" data-lightbox="{{ url('assets') }}/img/products/detail-2.jpg" data-title="High Neck Bodycon Dress">
-                                        <img src="{{ url('assets') }}/img/products/detail-2.jpg" alt="">
-                                    </a>
-                                    <a href="{{ url('assets') }}/img/products/detail-thumb.jpg" data-lightbox="{{ url('assets') }}/img/products/detail-thumb.jpg" data-title="High Neck Bodycon Dress">
-                                        <img src="{{ url('assets') }}/img/products/detail-thumb.jpg" alt="">
-                                    </a>
-                                    <a href="{{ url('assets') }}/img/products/detail-1.jpg" data-lightbox="{{ url('assets') }}/img/products/detail-1.jpg" data-title="High Neck Bodycon Dress">
-                                        <img src="{{ url('assets') }}/img/products/detail-1.jpg" alt="">
-                                    </a>
+                                    @endforeach
+
                                 </div>
                                 <div class="single-thumbnail-small row">
-                                    <div class="1 single-thumb" data-slick-index="1">
-                                        <img src="{{ url('assets') }}/img/products/thumb-1.jpg" alt="thumb1">
-                                    </div>
-                                    <div class="2 single-thumb" data-slick-index="2">
-                                        <img src="{{ url('assets') }}/img/products/thumb-2.jpg" alt="thumb1">
-                                    </div>
-                                    <div class="3 single-thumb" data-slick-index="3">
-                                        <img src="{{ url('assets') }}/img/products/thumb-3.jpg" alt="thumb1">
-                                    </div>
-                                    <div class="4 single-thumb" data-slick-index="4">
-                                        <img src="{{ url('assets') }}/img/products/thumb-4.jpg" alt="thumb1">
-                                    </div>
-                                    <div class="5 single-thumb" data-slick-index="5">
-                                        <img src="{{ url('assets') }}/img/products/thumb-3.jpg" alt="thumb1">
-                                    </div>
+                                    <?php $no = 1; ?>
+                                    @foreach($images as $img)
+                                        <div class="{{ $no }} single-thumb" data-slick-index="{{ $no }}">
+                                            <img src="{{ url('storage/app/'.$img->image) }}" alt="thumb{{ $no }}">
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -101,12 +83,15 @@
                         </div>
                         <div class="p-content clear">
                             <p class="content">
-                                Availability: In stock
-                                <br> Brand: Acer
+                                Availability: {{ $model->available == 1 ? 'In stock'  : 'Out of stock'}}
+                                @if($model->available)
+                                    <br>
+                                    Stock: {{ $model->stock }}
+                                @endif
                                 <br>
                             </p>
                             <p class="d-content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                                {{ $model->description }}</p>
                         </div>
                         <div class="cart-quantity">
                             <div class="cart-plus-minus">
@@ -136,10 +121,9 @@
                         </div>
                         <div class="categories-area">
                             <p class="category">
-                                <span>Categories :</span>
-                                Backpacks, Bags, Bucket Bags, clothings, Clutches, Crossbody Bags, Jackets & Coats, Jeans, Men, Pumps, Sandals, Shoes, Shorts, Sneakers, T-shirts, Wedges
+                                <span>Category :</span>
+                                asd
                             </p>
-                            <p class="tags"><span>Tags:</span> blouse, fashion</p>
                         </div>
                     </div>
                 </div>
@@ -153,32 +137,38 @@
                 <div class="col-md-12">
                     <div class="product-menu text-uppercase">
                         <ul>
+                            <!--
                             <li role="presentation" class="active p-description">
                                 <a href="#product-description" aria-controls="product-description" role="tab" data-toggle="tab">product description</a>
                             </li>
-                            <li role="presentation" class="d-reviews">
-                                <a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">reviews</a>
-                            </li>
-                            <li role="presentation" class="tags">
-                                <a href="#tags" aria-controls="tags" role="tab" data-toggle="tab">tags</a>
+                            -->
+                            <li role="presentation" class="active d-reviews">
+                                <a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Product Detail</a>
                             </li>
                         </ul>
                     </div>
                     <div class="reviews-content">
                         <div class="tab-content">
+                            <!--
                             <div role="tabpanel" class="tab-pane fade in active" id="product-description">
                                 <p class="r-content">
                                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem.
                                 </p>
                             </div>
-                            <div role="tabpanel" class="tab-pane fade in" id="reviews">
+                            -->
+                            <div role="tabpanel" class="tab-pane fade in active" id="reviews">
                                 <p class="r-content">
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade in" id="tags">
-                                <p class="r-content">
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem.
+                                <div class="col-md-6">
+                                    <table class="table table-striped">
+                                        @foreach($model->product_detail as $detail)
+                                        <tr>
+                                            <td>{{ $detail->label }}</td>
+                                            <td>{{ $detail->value }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                </div>
+
                                 </p>
                             </div>
                         </div>
@@ -192,4 +182,30 @@
 
 @push('plugin_scripts')
     <script src="{{ url('assets/lightbox2/dist/js/lightbox.min.js') }}"></script>
+@endpush
+
+@push('scripts')
+<script>
+    /*----------------------------
+     Slick carousel active
+     ------------------------------ */
+    $('.single-thumbnail-big').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.single-thumbnail-small'
+    });
+    $('.single-thumbnail-small').slick({
+        slidesToShow: <?= count($images) ?>,
+        slidesToScroll: 1,
+        asNavFor: '.single-thumbnail-big',
+        dots: false,
+        centerMode: true,
+        focusOnSelect: true,
+        arrows: true,
+        prevArrow: '<button type="button" class="custom-prev"><i class="fa fa-long-arrow-left"></i></button>',
+        nextArrow: '<button type="button" class="custom-next"><i class="fa fa-long-arrow-right"></i></button>'
+    });
+</script>
 @endpush

@@ -26,6 +26,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/product/{id}', 'ProductController@show')->name('front_product');
 
+Route::post('/subscribe', 'HomeController@subscribe');
+
 
 // Route master
 Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() {

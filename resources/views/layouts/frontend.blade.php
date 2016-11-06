@@ -284,8 +284,9 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <!-- start signup form -->
                         <div class="signup-form">
-                            <form action="#" class="news-form">
-                                <input type="text" class="f-form" placeholder="Enter your phone number...">
+                            <form action="{{ url('subscribe') }}" class="news-form" method="post">
+                                {{ csrf_field() }}
+                                <input type="number" class="f-form" name="no_hp" placeholder="Enter your phone number..." required>
                                 <button class="submit text-uppercase">subscribe !</button>
                             </form>
                         </div>
@@ -305,7 +306,7 @@
     <div class="footer-top-area section-padding">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                     <div class="widget-area">
                         <h4 class="widget-title">Contact info</h4>
                         <div class="ad-marker">
@@ -323,7 +324,7 @@
                         <p> Email: <a href="mailto:admin@bootexperts.com ">admin@bootexperts.com </a></p>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
                     <div class="widget-area widget-menu">
                         <h4 class="widget-title">MY ACCOUNT</h4>
                         <ul>
@@ -357,22 +358,6 @@
                             <li><a href="#">Terms & conditions</a></li>
                             <li><a href="#">Support 24/7</a></li>
                         </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="widget-area widget-area-tags">
-                        <h4 class="widget-title">popular tags</h4>
-                        <a class="c-tags" href="#">Clothing</a>
-                        <a class="c-tags" href="#">T-shirt</a>
-                        <a class="c-tags" href="#">Men’s</a>
-                        <a class="c-tags" href="#">Facon</a>
-                        <a class="c-tags" href="#">Fashion</a>
-                        <a class="c-tags" href="#">shop online</a>
-                        <a class="c-tags" href="#">carry bag</a>
-                        <a class="c-tags" href="#">Shoes for Men</a>
-                        <a class="c-tags" href="#">Women’s</a>
-                        <a class="c-tags" href="#">sale</a>
-                        <a class="c-tags" href="#">trend for Men’s</a>
                     </div>
                 </div>
             </div>
