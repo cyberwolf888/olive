@@ -29,6 +29,7 @@ Route::get('/product/{id}', 'ProductController@show')->name('front_product');
 Route::post('/subscribe', 'HomeController@subscribe');
 
 Route::get('/cart/insert/{id}', 'CartController@insert')->name('cart.insert');
+Route::get('/cart', 'CartController@index')->name('cart.index');
 
 // Route master
 Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() {
