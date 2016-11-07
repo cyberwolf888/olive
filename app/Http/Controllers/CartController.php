@@ -11,7 +11,7 @@ class CartController extends Controller
 {
     public function index()
     {
-        //Cart::destroy();
+        //Cart::instance('cart')->destroy();
         //session()->forget('cart');
         //dd(Cart::instance('cart')->content());
         foreach(Cart::instance('cart')->content() as $row) {
@@ -23,7 +23,10 @@ class CartController extends Controller
     {
         $product = Product::findOrFail($request->product_id);
         $details = ProductDetail::where('product_id',$product->id)->pluck('value','label')->toArray();
-
         Cart::instance('cart')->add($product->id, $product->name, $request->qty, $product->price, $details)->associate('App\Models\Product');
+        return response()->json([
+            'name' => 'Abigail',
+            'state' => 'CA'
+        ]);
     }
 }

@@ -24,7 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        dd(Cart::content());
         session(['token'=>md5(microtime())]);
         return view('frontend/home');
     }

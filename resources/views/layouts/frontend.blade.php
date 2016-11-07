@@ -6,6 +6,7 @@
     <title>{{ config('app.name', 'Olive') }}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- favicon -->
     <link id="favicon" rel="icon" type="image/png" href="{{ url('assets/img/logo/logo-c.png') }}" />
 
@@ -104,57 +105,47 @@
                                 <li class="header-cart-area">
                                     <a href="#">
                                         <span><i class="fa fa-shopping-cart"></i></span>
-                                        <span class="cart-inner"><b>shopping cart</b>(2)</span>
+                                        <span class="cart-inner"><b>shopping cart</b>(<span id="count_cart">{{ \Cart::instance('cart')->count() }}</span>)</span>
                                     </a>
                                     <div class="mini-cart">
-                                        <ul>
-                                            <li class="cart-single-item clearfix">
-                                                <div class="cart-img">
-                                                    <a href="#">
-                                                        <img src="{{ url('assets/') }}/img/products/1.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="cart-content text-left">
-                                                    <a href="#" class="cart-title">Sleeve High neck Bodycon Dress</a>
-                                                    <p class="qty">Qty: 2
-                                                        <br><span>$123.00</span>
-                                                    </p>
-                                                </div>
-                                                <div class="cart-remove">
-                                                    <a href="#" class="action"><i class="fa fa-close"></i></a>
-                                                </div>
-                                            </li>
-                                            <li class="cart-single-item clearfix">
-                                                <div class="cart-img">
-                                                    <a href="#">
-                                                        <img src="{{ url('assets/') }}/img/products/2.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="cart-content text-left">
-                                                    <a href="#" class="cart-title">Sleeve Low neck Bodycon Dress</a>
-                                                    <p class="qty">Qty: 4
-                                                        <br><span>$245.00</span>
-                                                    </p>
-                                                </div>
-                                                <div class="cart-remove">
-                                                    <a href="#" class="action"><i class="fa fa-close"></i></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="cart-pricing">
-                                            <p class="shipping text-left">shipping :<span class="s-price">$10.00</span></p>
-                                            <p class="total text-left">total :<span class="p-total">$358.00</span></p>
-                                        </div>
-                                        <div class="cart-button">
+                                        @if(\Cart::count())
                                             <ul>
-                                                <li>
-                                                    <a href="#">View my cart <i class="fa fa-angle-right"></i></a>
+                                                @foreach(Cart::instance('cart')->content() as $row)
+                                                <li class="cart-single-item clearfix">
+                                                    <div class="cart-img">
+                                                        <a href="{{ route('front_product',$row->id) }}">
+                                                            <img src="{{ url('storage/app/'.$row->model->getImage($row->id)->image) }}" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <div class="cart-content text-left">
+                                                        <a href="{{ route('front_product',$row->id) }}" class="cart-title"> {{ $row->name }}</a>
+                                                        <p class="qty">Qty: {{ $row->qty }}
+                                                            <br><span>Rp {{ number_format($row->price,0,',','.') }}</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="cart-remove">
+                                                        <a href="#" class="action"><i class="fa fa-close"></i></a>
+                                                    </div>
                                                 </li>
-                                                <li>
-                                                    <a href="#">Checkout <i class="fa fa-angle-right"></i></a>
-                                                </li>
+                                                @endforeach
                                             </ul>
-                                        </div>
+                                            <div class="cart-pricing">
+                                                <p class="shipping text-left">shipping :<span class="s-price">FREE</span></p>
+                                                <p class="total text-left">total :<span class="p-total">{{ \Cart::instance('cart')->total() }}</span></p>
+                                            </div>
+                                            <div class="cart-button">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">View my cart <i class="fa fa-angle-right"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Checkout <i class="fa fa-angle-right"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        @else
+                                            <h3>Cart is empty</h3>
+                                        @endif
                                     </div>
                                 </li>
                                 <li>

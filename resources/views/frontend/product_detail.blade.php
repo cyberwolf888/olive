@@ -95,17 +95,14 @@
                         </div>
                         <div class="cart-quantity">
                             <div class="cart-plus-minus">
-                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
+                                <input id="qty" class="cart-plus-minus-box" type="text" name="qtybutton" value="1" readonly>
                             </div>
                         </div>
                         <div class="detail-choices">
                             <div class="choice-icon">
                                 <ul>
                                     <li>
-                                        <a class="text-uppercase adtocart" href="#">add to cart</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><span class="heart"><i class="pe-7s-like"></i></span></a>
+                                        <a id="btn_add" class="text-uppercase adtocart" href="javascript:null;">add to cart</a>
                                     </li>
                                 </ul>
                             </div>
@@ -207,5 +204,28 @@
         prevArrow: '<button type="button" class="custom-prev"><i class="fa fa-long-arrow-left"></i></button>',
         nextArrow: '<button type="button" class="custom-next"><i class="fa fa-long-arrow-right"></i></button>'
     });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#btn_add").click(function () {
+            var qty = $("#qty").val();
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: '<?= route('cart.insert') ?>',
+                type: 'POST',
+                data: {qty:qty, product_id:'<?= $model->id ?>'},
+                success: function (data) {
+                    //console.log(data);
+                    location.reload();
+                }
+            });
+        });
+    })
 </script>
 @endpush
