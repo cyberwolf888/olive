@@ -8,7 +8,7 @@
     <main class="mn-inner">
         <div class="row">
             <div class="col s12">
-                <div class="page-title">Product</div>
+                <div class="page-title">Product Image</div>
             </div>
             @if (count($errors) > 0)
                 <div class="col m12">

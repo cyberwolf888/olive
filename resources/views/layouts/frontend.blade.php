@@ -58,11 +58,9 @@
                                     <li><a href="{{ url('/sale') }}">Sale</a></li>
                                     <li><a href="#">Category</a>
                                         <ul class="home-index text-upperxase text-left">
-                                            <li><a href="shop.html">Shop</a></li>
-                                            <li><a href="product-detail.html">Product Detail</a></li>
-                                            <li><a href="cart.html">Cart page</a></li>
-                                            <li><a href="checkout.html">Checkout Page</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            @foreach(\App\Models\Category::all() as $category)
+                                            <li><a href="{{ route('category',$category->id) }}">{{ $category->name }}</a></li>
+                                            @endforeach
                                         </ul>
                                     </li>
                                     <li><a href="shop.html">New Item</a></li>
@@ -71,7 +69,7 @@
                                         <li><a href="{{ url('/master') }}">Administrator</a></li>
                                     @endrole
                                     @role('member')
-                                        <li><a href="{{ url('/master') }}">My Account</a></li>
+                                        <li><a href="{{ url('/member') }}">My Account</a></li>
                                     @endrole
                                 </ul>
                             </nav>
@@ -131,12 +129,12 @@
                                             </ul>
                                             <div class="cart-pricing">
                                                 <p class="shipping text-left">shipping :<span class="s-price">FREE</span></p>
-                                                <p class="total text-left">total :<span class="p-total">{{ \Cart::instance('cart')->total() }}</span></p>
+                                                <p class="total text-left">total :<span class="p-total">Rp {{ \Cart::instance('cart')->total() }}</span></p>
                                             </div>
                                             <div class="cart-button">
                                                 <ul>
                                                     <li>
-                                                        <a href="#">View my cart <i class="fa fa-angle-right"></i></a>
+                                                        <a href="{{ route('cart.index') }}">View my cart <i class="fa fa-angle-right"></i></a>
                                                     </li>
                                                     <li>
                                                         <a href="#">Checkout <i class="fa fa-angle-right"></i></a>
@@ -156,25 +154,24 @@
                                         <ul>
 
                                             <li class="header-userinfo">
-                                                    <div class="current">
-                                                        <a href="#">My Account</a>
-                                                    </div>
                                                     <ul class="first-step">
-                                                        <li><a href="#">My Account</a></li>
-                                                        <li><a href="#">My Wishlist</a></li>
-                                                        <li><a href="#">My checkout</a></li>
+                                                        @if (Auth::guest())
                                                         <li><a href="{{ url('/login') }}">Login</a></li>
-                                                        <li>
-                                                            <a href="{{ url('/logout') }}"
-                                                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                                                Logout
-                                                            </a>
+                                                        @else
+                                                            <li><a href="#">My Account</a></li>
+                                                            <li><a href="#">My checkout</a></li>
+                                                            <li>
+                                                                <a href="{{ url('/logout') }}"
+                                                                   onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                                                    Logout
+                                                                </a>
 
-                                                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                                                {{ csrf_field() }}
-                                                            </form>
-                                                        </li>
+                                                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                                                    {{ csrf_field() }}
+                                                                </form>
+                                                            </li>
+                                                        @endif
                                                     </ul>
                                             </li>
                                         </ul>

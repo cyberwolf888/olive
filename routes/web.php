@@ -20,16 +20,22 @@ Route::any('/rbac', function(){
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/home', 'HomeController@index');
 
 Route::get('/product/{id}', 'ProductController@show')->name('front_product');
 
+Route::get('/category/{id}', 'CategoryController@index')->name('category');
+
 Route::post('/subscribe', 'HomeController@subscribe');
 
 Route::post('/cart/insert', 'CartController@insert')->name('cart.insert');
 Route::get('/cart', 'CartController@index')->name('cart.index');
+Route::post('/clear', 'CartController@clear')->name('cart.clear');
+Route::post('/delete', 'CartController@delete')->name('cart.delete');
+Route::post('/update', 'CartController@update')->name('cart.update');
+Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
 
 // Route master
 Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() {
@@ -69,3 +75,9 @@ Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() 
         Route::get('/detail/{id}', 'Master\ProductController@show')->name('.show');
     });
 });
+
+//Route Member
+Route::group(['prefix' => 'member', 'middleware' => ['role:member']], function() {
+    Route::get('/', 'Member\DashboardController@index');
+});
+

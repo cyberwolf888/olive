@@ -14,9 +14,11 @@ class CartController extends Controller
         //Cart::instance('cart')->destroy();
         //session()->forget('cart');
         //dd(Cart::instance('cart')->content());
-        foreach(Cart::instance('cart')->content() as $row) {
+        /*foreach(Cart::instance('cart')->content() as $row) {
             echo 'You have ' . $row->qty . ' items of ' . $row->model->name . ' with description: "' . $row->model->description . '" in your cart.';
-        }
+        }*/
+
+        return view('frontend/cart');
     }
 
     public function insert(Request $request)
@@ -28,5 +30,27 @@ class CartController extends Controller
             'name' => 'Abigail',
             'state' => 'CA'
         ]);
+    }
+
+    public function update(Request $request)
+    {
+        Cart::instance('cart')->update($request->rowId, $request->qty);
+    }
+
+    public function delete(Request $request)
+    {
+        $rowId = $request->rowId;
+        Cart::instance('cart')->remove($rowId);
+    }
+
+    public function clear()
+    {
+        Cart::instance('cart')->destroy();
+        //return redirect()->route('cart.index');
+    }
+
+    public function checkout()
+    {
+        return view('frontend/checkout');
     }
 }
