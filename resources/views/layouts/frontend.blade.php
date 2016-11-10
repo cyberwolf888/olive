@@ -63,8 +63,8 @@
                                             @endforeach
                                         </ul>
                                     </li>
-                                    <li><a href="shop.html">New Item</a></li>
-                                    <li><a href="contact.html">contact</a></li>
+                                    <li><a href="{{ url('/newitem') }}">New Item</a></li>
+                                    <li><a href="{{ url('/contact') }}">contact</a></li>
                                     @role('admin')
                                         <li><a href="{{ url('/master') }}">Administrator</a></li>
                                     @endrole

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: 04 Nov 2016 pada 09.55
--- Versi Server: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Host: 127.0.0.1
+-- Generation Time: 11 Nov 2016 pada 00.33
+-- Versi Server: 10.1.13-MariaDB
+-- PHP Version: 7.0.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -44,6 +44,23 @@ INSERT INTO `category` (`id`, `name`, `description`, `image`, `created_at`, `upd
 (2, 'Shoes', 'Sendal paling sakti', 'images/category/a60ba1a7a56c9e00252baebe89d62c12.jpeg', '2016-10-29 23:17:58', '2016-10-29 23:30:24'),
 (3, 'Bedebah', 'Category bedebah', 'images/category/712dcd53dbebe8b7a2ce5f35ff17daa5.jpeg', '2016-10-31 18:14:04', '2016-10-31 18:14:04'),
 (4, 'T-Shirt', 'Awesome T-Shirt', 'images/category/2ff227989aa79adad4352223e419a145.jpeg', '2016-11-03 19:28:56', '2016-11-03 19:28:56');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `detail_transaction`
+--
+
+CREATE TABLE `detail_transaction` (
+  `id` int(11) NOT NULL,
+  `transaction_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `price` float NOT NULL,
+  `total` float NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -155,7 +172,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `category_id`, `name`, `description`, `price`, `discount`, `isSale`, `stock`, `available`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Celana Awesome', 'Celana paliing awesome', 120000, 0, '0', 12, '1', '2016-10-31 18:48:47', '2016-11-03 19:23:49'),
+(1, 2, 'Celana Awesome', 'Celana paliing awesome', 120000, 0, '1', 12, '1', '2016-10-31 18:48:47', '2016-11-03 19:23:49'),
 (2, 1, 'Celena Bedebah', 'Celana paling bedebah', 130000, 10, '1', 12, '1', '2016-10-31 18:51:47', '2016-10-31 18:51:47'),
 (3, 4, 'Jean Shirt Awesome', 'The most awesome t-shirt in the world', 230000, 0, '1', 12, '1', '2016-11-03 19:29:52', '2016-11-03 19:35:08');
 
@@ -260,6 +277,47 @@ INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `subscribe`
+--
+
+CREATE TABLE `subscribe` (
+  `id` int(11) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `subscribe`
+--
+
+INSERT INTO `subscribe` (`id`, `phone`, `created_at`, `updated_at`) VALUES
+(1, '0857373637367', '2016-11-09 18:24:37', '2016-11-09 18:24:37'),
+(2, '085737353569', '2016-11-09 18:25:00', '2016-11-09 18:25:00');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `transaction`
+--
+
+CREATE TABLE `transaction` (
+  `id` int(11) NOT NULL,
+  `member_id` int(11) NOT NULL DEFAULT '0',
+  `fullname` varchar(255) NOT NULL DEFAULT '0',
+  `address` varchar(255) NOT NULL DEFAULT '0',
+  `zip_code` varchar(5) NOT NULL DEFAULT '0',
+  `state` varchar(255) NOT NULL DEFAULT '0',
+  `total` varchar(255) NOT NULL DEFAULT '0',
+  `status` int(1) NOT NULL DEFAULT '0',
+  `payment_status` int(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `users`
 --
 
@@ -279,9 +337,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@mail.com', '$2y$10$dciJKMX9vjwb88Wm8F1Hv.lnjyO7qy5HV6/t2LEDPJsjjph/KjwT6', 'dmG2xGBj2dFeq4Ywr59hkkxrv1sTGnSkCozo1gjiFJKUvcal8yhtW64XTNXx', 1, '2016-10-23 23:50:07', '2016-10-24 01:35:41'),
+(1, 'admin', 'admin@mail.com', '$2y$10$dciJKMX9vjwb88Wm8F1Hv.lnjyO7qy5HV6/t2LEDPJsjjph/KjwT6', 'd5wVvbNijmTm7hBO0UdiO2H9YRgb5B55S4yBdElT51GEGMZD4L5APyz7W40k', 1, '2016-10-23 23:50:07', '2016-11-09 18:26:49'),
 (10, 'I Made Hendra Wijaya', 'wijaya.imd@gmail.com', '$2y$10$ROKg.x.eIPpK8a7iusnLQuCNgE9L8aIj2DP2okfiR4QRsz0y8hY4e', NULL, 1, '2016-10-26 00:44:30', '2016-10-26 01:12:19'),
-(11, 'Bedebah', 'bedebah@mail.com', '$2y$10$GqIaNwBl9E7jDU5p32t/p.f3GL9HoOnuC5tErM/f18Os1b39xOpZy', NULL, 0, '2016-10-26 01:13:36', '2016-10-26 01:15:53');
+(11, 'Bedebah', 'bedebah@mail.com', '$2y$10$GqIaNwBl9E7jDU5p32t/p.f3GL9HoOnuC5tErM/f18Os1b39xOpZy', '7Avqd6LFCp8EO1hozDnMWs2LQA4f9t02GN16edsJmlVAnzdCTP3qQl4sNvgP', 0, '2016-10-26 01:13:36', '2016-11-09 18:26:01');
 
 --
 -- Indexes for dumped tables
@@ -291,6 +349,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `statu
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `detail_transaction`
+--
+ALTER TABLE `detail_transaction`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -359,6 +423,18 @@ ALTER TABLE `role_user`
   ADD KEY `role_user_role_id_foreign` (`role_id`);
 
 --
+-- Indexes for table `subscribe`
+--
+ALTER TABLE `subscribe`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transaction`
+--
+ALTER TABLE `transaction`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -374,6 +450,11 @@ ALTER TABLE `users`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `detail_transaction`
+--
+ALTER TABLE `detail_transaction`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `member`
 --
@@ -409,6 +490,16 @@ ALTER TABLE `product_images`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `subscribe`
+--
+ALTER TABLE `subscribe`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `transaction`
+--
+ALTER TABLE `transaction`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --

@@ -28,6 +28,13 @@ Route::get('/product/{id}', 'ProductController@show')->name('front_product');
 
 Route::get('/category/{id}', 'CategoryController@index')->name('category');
 
+Route::get('/sale', 'HomeController@sale');
+
+Route::get('/newitem', 'HomeController@newitem');
+
+Route::get('/contact', 'HomeController@contact');
+Route::post('/contact', 'HomeController@contact');
+
 Route::post('/subscribe', 'HomeController@subscribe');
 
 Route::post('/cart/insert', 'CartController@insert')->name('cart.insert');
@@ -77,7 +84,7 @@ Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() 
 });
 
 //Route Member
-Route::group(['prefix' => 'member', 'middleware' => ['role:member']], function() {
+Route::group(['prefix' => 'member', 'middleware' => ['auth','role:member']], function() {
     Route::get('/', 'Member\DashboardController@index');
 });
 
