@@ -36,4 +36,9 @@ class User extends Authenticatable
         $status = ['1'=>'Active','0'=>'Deactive','2'=>'Deleted'];
         return $status[$index];
     }
+
+    public function member()
+    {
+        return $this->hasOne('App\Models\Member', 'user_id');
+    }
 }

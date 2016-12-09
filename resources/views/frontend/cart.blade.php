@@ -108,7 +108,7 @@
                         <p class="sub-total">Subtotal: Rp {{ \Cart::instance('cart')->subtotal() }}</p>
                         <p class="sub-total">Tax: FREE</p>
                         <h2 class="grand-total">Grand total: <span class="amt">Rp {{ \Cart::instance('cart')->total() }}</span></h2>
-                        <a class="pro-checkout text-uppercase" href="#">PROCEED TO CHECK OUT</a>
+                        <a class="pro-checkout text-uppercase" href="{{ route('cart.checkout') }}">PROCEED TO CHECK OUT</a>
                         </p>
                     </div>
                 </div>

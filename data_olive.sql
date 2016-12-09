@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 11 Nov 2016 pada 00.33
+-- Generation Time: 09 Des 2016 pada 08.27
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -61,6 +61,15 @@ CREATE TABLE `detail_transaction` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `detail_transaction`
+--
+
+INSERT INTO `detail_transaction` (`id`, `transaction_id`, `product_id`, `qty`, `price`, `total`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 2, 120000, 240000, '2016-12-08 00:29:53', '2016-12-08 00:29:53'),
+(2, 2, 3, 4, 230000, 920000, '2016-12-08 20:11:28', '2016-12-08 20:11:28'),
+(3, 2, 2, 3, 130000, 390000, '2016-12-08 20:11:28', '2016-12-08 20:11:28');
 
 -- --------------------------------------------------------
 
@@ -120,6 +129,29 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `payment`
+--
+
+CREATE TABLE `payment` (
+  `id` int(11) NOT NULL,
+  `transaction_id` int(11) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `payment`
+--
+
+INSERT INTO `payment` (`id`, `transaction_id`, `image`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, '210ef2b920f7a39b7c52e9fd89e22c92.jpg', 0, '2016-12-08 23:21:34', '2016-12-08 23:21:34'),
+(2, 2, '0bd82e617676ac290355de3b1fbd1fe7.jpg', 0, '2016-12-08 23:24:18', '2016-12-08 23:24:18');
 
 -- --------------------------------------------------------
 
@@ -305,15 +337,24 @@ CREATE TABLE `transaction` (
   `id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL DEFAULT '0',
   `fullname` varchar(255) NOT NULL DEFAULT '0',
+  `phone` varchar(12) NOT NULL DEFAULT '0',
   `address` varchar(255) NOT NULL DEFAULT '0',
-  `zip_code` varchar(5) NOT NULL DEFAULT '0',
+  `zip_code` char(50) NOT NULL DEFAULT '0',
   `state` varchar(255) NOT NULL DEFAULT '0',
   `total` varchar(255) NOT NULL DEFAULT '0',
   `status` int(1) NOT NULL DEFAULT '0',
-  `payment_status` int(1) NOT NULL DEFAULT '0',
+  `resi` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `transaction`
+--
+
+INSERT INTO `transaction` (`id`, `member_id`, `fullname`, `phone`, `address`, `zip_code`, `state`, `total`, `status`, `resi`, `created_at`, `updated_at`) VALUES
+(1, 1, 'I Made Hendra Wijaya', '82247464196', 'Jalan Wisnu Marga Belayu No 19', '82181', 'Bali', '240000', 2, NULL, '2016-12-08 00:29:53', '2016-12-08 23:21:34'),
+(2, 1, 'I Made Hendra Wijaya', '82247464196', 'Jalan Wisnu Marga Belayu No 19', '82181', 'Bali', '1310000', 2, NULL, '2016-12-08 20:11:28', '2016-12-08 23:24:18');
 
 -- --------------------------------------------------------
 
@@ -337,8 +378,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@mail.com', '$2y$10$dciJKMX9vjwb88Wm8F1Hv.lnjyO7qy5HV6/t2LEDPJsjjph/KjwT6', 'd5wVvbNijmTm7hBO0UdiO2H9YRgb5B55S4yBdElT51GEGMZD4L5APyz7W40k', 1, '2016-10-23 23:50:07', '2016-11-09 18:26:49'),
-(10, 'I Made Hendra Wijaya', 'wijaya.imd@gmail.com', '$2y$10$ROKg.x.eIPpK8a7iusnLQuCNgE9L8aIj2DP2okfiR4QRsz0y8hY4e', NULL, 1, '2016-10-26 00:44:30', '2016-10-26 01:12:19'),
+(1, 'admin', 'admin@mail.com', '$2y$10$dciJKMX9vjwb88Wm8F1Hv.lnjyO7qy5HV6/t2LEDPJsjjph/KjwT6', 'meg7QzYLU6Rir6qRkXv1JCjvCGiAF4wRVsD73kVHiBrWjYSevcBso2beIDud', 1, '2016-10-23 23:50:07', '2016-12-06 19:15:22'),
+(10, 'I Made Hendra Wijaya', 'wijaya.imd@gmail.com', '$2y$10$ROKg.x.eIPpK8a7iusnLQuCNgE9L8aIj2DP2okfiR4QRsz0y8hY4e', 'VZp49kBUQBhF7jPU6Je90ZrzOxlZTuZsxPoLqFLRvneqzTdE1FrHSxpPTxtf', 1, '2016-10-26 00:44:30', '2016-12-08 23:26:34'),
 (11, 'Bedebah', 'bedebah@mail.com', '$2y$10$GqIaNwBl9E7jDU5p32t/p.f3GL9HoOnuC5tErM/f18Os1b39xOpZy', '7Avqd6LFCp8EO1hozDnMWs2LQA4f9t02GN16edsJmlVAnzdCTP3qQl4sNvgP', 0, '2016-10-26 01:13:36', '2016-11-09 18:26:01');
 
 --
@@ -375,6 +416,12 @@ ALTER TABLE `migrations`
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`),
   ADD KEY `password_resets_token_index` (`token`);
+
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `permissions`
@@ -454,7 +501,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `detail_transaction`
 --
 ALTER TABLE `detail_transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `member`
 --
@@ -465,6 +512,11 @@ ALTER TABLE `member`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
@@ -499,7 +551,7 @@ ALTER TABLE `subscribe`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --

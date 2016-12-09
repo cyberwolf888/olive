@@ -137,7 +137,7 @@
                                                         <a href="{{ route('cart.index') }}">View my cart <i class="fa fa-angle-right"></i></a>
                                                     </li>
                                                     <li>
-                                                        <a href="#">Checkout <i class="fa fa-angle-right"></i></a>
+                                                        <a href="{{ route('cart.checkout') }}">Checkout <i class="fa fa-angle-right"></i></a>
                                                     </li>
                                                 </ul>
                                             </div>

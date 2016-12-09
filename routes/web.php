@@ -43,6 +43,11 @@ Route::post('/clear', 'CartController@clear')->name('cart.clear');
 Route::post('/delete', 'CartController@delete')->name('cart.delete');
 Route::post('/update', 'CartController@update')->name('cart.update');
 Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
+Route::post('/checkout', 'CartController@processCheckout')->name('cart.checkout.process');
+Route::get('/invoice/{id}', 'CartController@invoice')->name('cart.invoice');
+Route::get('/payment', 'CartController@payment')->name('cart.payment');
+Route::post('/payment', 'CartController@prosesPayment')->name('cart.payment.proses');
+
 
 // Route master
 Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() {

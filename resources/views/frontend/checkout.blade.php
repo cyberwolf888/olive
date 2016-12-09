@@ -22,7 +22,7 @@
                             </a>
                             <i class="fa fa-angle-right"></i>
                             <a href="#">
-                                <span class="home"> Men </span>
+                                <span class="home"> Cart </span>
                             </a>
                             <i class="fa fa-angle-right"></i>
                             <span class="s-cart">Checkout</span>
@@ -38,67 +38,14 @@
     <div class="checkout-area chk-page">
         <div class="container">
             <div class="row">
+                {!! Form::open(['route' => 'cart.checkout.process', 'method' => 'post']) !!}
                 <div class="col-md-9">
                     <div class="panel-group information-area" id="checkout-progress">
                         <div class="panel panel-default information">
                             <div class="panel-heading" >
-                                <a class="active btn bill-info text-uppercase" data-toggle="collapse" data-parent="#checkout-progress" href="#check-meth"><span>1</span>CHECKOUT METHOD</a>
+                                <a class="active btn bill-info text-uppercase" data-toggle="collapse" data-parent="#checkout-progress" href="#check-meth"><span>1</span>BILLING INFORMATION</a>
                             </div>
                             <div id="check-meth" class="panel-collapse collapse in">
-                                <div class="panel-body">
-                                    <div class="row chkm">
-                                        <div class="col-md-6 checkout">
-                                            <div class="chk-guest">
-                                                <h4 class="chkout">CHECKOUT AS A GUEST OR REGISTER</h4>
-                                                <p class="register">Register with us for future convenience:</p>
-                                                <form action="#">
-                                                    <input type="radio" name="gender" value="chk"> Checkout as Guest
-                                                    <br>
-                                                    <input type="radio" name="gender" value="register"> Register
-                                                </form>
-                                            </div>
-                                            <div class="register-time">
-                                                <h4 class="reg">REGISTER AND SAVE TIME!</h4>
-                                                <p class="register">Register with us for future convenience:</p>
-                                                <form action="#">
-                                                    <input type="radio" name="gender" value="checkout"> Fast and easy check out
-                                                    <br>
-                                                    <input type="radio" name="gender" value="status"> Easy access to your order history and status
-                                                </form>
-                                            </div>
-                                            <a href="#" class="continue">CONTINUE</a>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="login-area col-md-offset-2">
-                                                <div class="login-form">
-                                                    <h3 class="login text-uppercase">LOGIN</h3>
-                                                    <h4 class="a-reg">ALREADY REGISTERED?</h4>
-                                                    <p class="p-log">Please log in below :</p>
-                                                    <form action="#">
-                                                        <label class="e-add">* Email Address</label>
-                                                        <br>
-                                                        <input type="text">
-                                                        <br>
-                                                        <label class="pass">* Password</label>
-                                                        <br>
-                                                        <input type="text" id="pass">
-                                                    </form>
-                                                    <p class="req">* Required Fields
-                                                        <br><a href="#"><span class="forget">Forgot your password ?</span></a>
-                                                    </p>
-                                                </div>
-                                                <a href="#" class="login">LOGIN</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default information">
-                            <div class="panel-heading" >
-                                <a class="collapsed btn bill-info text-uppercase" data-toggle="collapse" data-parent="#checkout-progress" href="#bill-info"><span>2</span>BILLING INFORMATION</a>
-                            </div>
-                            <div id="bill-info" class="panel-collapse collapse detail-content">
                                 <div class="panel-body">
                                     <div class="bill-information">
                                         <form action="#">
@@ -108,28 +55,16 @@
                                                         <li>
                                                             <div class="field fix">
                                                                 <div class="input-box">
-                                                                    <label class="label" for="first">First Name <em>*</em></label>
-                                                                    <input type="text" class=" border-color" id="first">
+                                                                    <label class="label" for="first">Full Name <em>*</em></label>
+                                                                    <input type="text" class=" border-color" id="fullname" name="fullname" value="{{ old('fullname')=='' ? $model->member->fullname : old('fullname') }}">
                                                                 </div>
                                                                 <div class="input-box">
-                                                                    <label class="label" for="middle">Middle Name/Initial </label>
-                                                                    <input type="text" class=" border-color" id="middle">
-                                                                </div>
-                                                                <div class="input-box">
-                                                                    <label class="label" for="last">Last Name<em>*</em></label>
-                                                                    <input type="text" class=" border-color" id="last">
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="field fix">
-                                                                <div class="input-box">
-                                                                    <label class="label">Company </label>
-                                                                    <input type="text" class=" border-color" id="Company">
+                                                                    <label class="label" for="middle">Phone Number <em>*</em></label>
+                                                                    <input type="text" class=" border-color" id="phone" name="phone" value="{{ old('phone')=='' ? $model->member->phone  : old('phone') }}">
                                                                 </div>
                                                                 <div class="input-box">
                                                                     <label class="label">Email Address <em>*</em></label>
-                                                                    <input type="email" class=" border-color"/>
+                                                                    <input type="email" class=" border-color" name="email" value="{{ old('email')=='' ? $model->email : old('email') }}"/>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -137,28 +72,7 @@
                                                             <div class="field fix">
                                                                 <div class="input-box inhun">
                                                                     <label class="label" for="addr">Address <em>*</em></label>
-                                                                    <input type="text" class=" border-color" id="addr"/>
-                                                                    <input type="text" class=" border-color"/>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="field fix">
-                                                                <div class="input-box">
-                                                                    <label class="label">City <em>*</em></label>
-                                                                    <input type="text" class=" border-color" id="City">
-                                                                </div>
-                                                                <div class="input-box">
-                                                                    <label class="label">State/Province<em>*</em></label>
-                                                                    <div class="i-box">
-                                                                        <select  id="State">
-                                                                            <option value="" selected>Select</option>
-                                                                            <option value="">Japan</option>
-                                                                            <option value="">Germani</option>
-                                                                            <option value="">India</option>
-                                                                            <option value="">US</option>
-                                                                        </select>
-                                                                    </div>
+                                                                    <input type="text" class=" border-color" id="address" name="address" value="{{ old('address')=='' ? $model->member->address : old('address') }}"/>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -166,55 +80,15 @@
                                                             <div class="field fix">
                                                                 <div class="input-box">
                                                                     <label class="label">Zip/Postal Code <em>*</em></label>
-                                                                    <input type="text" class=" border-color" id="Zip">
+                                                                    <input type="text" class=" border-color" id="zip_code" name="zip_code" value="{{ old('zip_code')=='' ? $model->member->zip_code : old('zip_code') }}">
                                                                 </div>
                                                                 <div class="input-box">
-                                                                    <label class="label">Country<em>*</em></label>
-                                                                    <div class="i-box">
-                                                                        <select  id="Country">
-                                                                            <option value="" selected>Select</option>
-                                                                            <option value="">Japan</option>
-                                                                            <option value="">Germani</option>
-                                                                            <option value="">India</option>
-                                                                            <option value="">US</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="field fix">
-                                                                <div class="input-box">
-                                                                    <label class="label">Telephone <em>*</em></label>
-                                                                    <input type="text" class=" border-color" id="Telephone">
-                                                                </div>
-                                                                <div class="input-box">
-                                                                    <label class="label" for="Fax">Fax <em>*</em></label>
-                                                                    <input type="text" class=" border-color" id="Fax">
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="chackoutl">
-                                                                <div class="i-boxb topmargin">
-                                                                    <input class="checkout-radio" type="radio" name="tag" id="guest"/>
-                                                                    <label class="cradio" for="guest">Checkout as Guest</label>
-                                                                </div>
-                                                                <div class="i_boxb">
-                                                                    <input class="checkout-radio" type="radio" name="tag" id="regis"/>
-                                                                    <label class="cradio" for="regis">Register</label>
+                                                                    <label class="label">State<em>*</em></label>
+                                                                    <input type="text" class=" border-color" id="state" name="state" value="{{ old('state')=='' ? $model->member->state : old('state') }}">
                                                                 </div>
                                                             </div>
                                                         </li>
                                                     </ul>
-                                                </div>
-                                                <div class="button-check clearfix">
-                                                    <div class="">
-                                                        <span class="left-btn">
-                                                            <a href="#"><i class="fa fa-long-arrow-up"></i>Back</a>
-                                                        </span>
-                                                        <button type="submit" class="btn right-btn custom-button">Continue</button>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </form>
@@ -224,22 +98,13 @@
                         </div>
                         <div class="panel panel-default information">
                             <div class="panel-heading" >
-                                <a class="collapsed btn bill-info text-uppercase" data-toggle="collapse" data-parent="#checkout-progress" href="#ship-info"><span>3</span>SHIPPING INFORMATION</a>
+                                <a class="collapsed btn bill-info text-uppercase" data-toggle="collapse" data-parent="#checkout-progress" href="#ship-info"><span>2</span>SHIPPING METHOD</a>
                             </div>
                             <div id="ship-info" class="panel-collapse collapse detail-content">
                                 <div class="panel-body">
                                     <div class="bill-information clearfix">
                                         <div class="flatrate">
-                                            <p>Flat Rate</p>
-                                            <p>Fixed &dollar;150.00</p>
-                                        </div>
-                                        <div class="button-check">
-                                            <div class="">
-                                                    <span class="left-btn">
-                                                        <a href="#"><i class="fa fa-long-arrow-up"></i>Back</a>
-                                                    </span>
-                                                <button type="submit" class="btn right-btn custom-button">Continue</button>
-                                            </div>
+                                            <p>FREE Delivery</p>
                                         </div>
                                     </div>
                                 </div>
@@ -247,54 +112,18 @@
                         </div>
                         <div class="panel panel-default information">
                             <div class="panel-heading" >
-                                <a class="collapsed btn bill-info text-uppercase" data-toggle="collapse" data-parent="#checkout-progress" href="#ship-method"><span>4</span>SHIPPING METHOD</a>
-                            </div>
-                            <div id="ship-method" class="panel-collapse collapse detail-content">
-                                <div class="panel-body">
-                                    <div class="billing-information clearfix">
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <div class="flatrate">
-                                                <p><input type="radio" id="Money"/><label for="Money">Check / Money order </label></p>
-                                                <p><input type="radio" id="Credit"/><label for="Credit">Credit Card (saved) </label></p>
-                                            </div>
-                                            <div class="button-check">
-                                                <div class="">
-                                                    <span class="left-btn">
-                                                        <a href="#"><i class="fa fa-long-arrow-up"></i>Back</a>
-                                                    </span>
-                                                    <button type="submit" class="btn right-btn custom-button">Continue</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default information">
-                            <div class="panel-heading" >
-                                <a class="collapsed btn bill-info text-uppercase" data-toggle="collapse" data-parent="#checkout-progress" href="#pay-info"><span>5</span>PAYMENT INFORMATION</a>
+                                <a class="collapsed btn bill-info text-uppercase" data-toggle="collapse" data-parent="#checkout-progress" href="#pay-info"><span>3</span>PAYMENT METHOD</a>
                             </div>
                             <div id="pay-info" class="panel-collapse collapse detail-content">
                                 <div class="panel-body">
                                     <div class="billing-information clearfix">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <div class="flatrate">
-                                                <p>
-                                                    <input type="radio" id="money"/>
-                                                    <label for="Money">Check / Money order </label>
-                                                </p>
+
                                                 <p>
                                                     <input type="radio" id="credit"/>
-                                                    <label for="Credit">Credit Card (saved) </label>
+                                                    <label for="Credit">Transfer Bank</label>
                                                 </p>
-                                            </div>
-                                            <div class="button-check">
-                                                <div class="">
-                                                    <span class="left-btn">
-                                                        <a href="#"><i class="fa fa-long-arrow-up"></i>Back</a>
-                                                    </span>
-                                                    <button type="submit" class="btn right-btn custom-button">Continue</button>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -303,7 +132,7 @@
                         </div>
                         <div class="panel panel-default information">
                             <div class="panel-heading" >
-                                <a class="collapsed btn bill-info text-uppercase" data-toggle="collapse" data-parent="#checkout-progress" href="#order-review"><span>6</span>ORDER REVIEW</a>
+                                <a class="collapsed btn bill-info text-uppercase" data-toggle="collapse" data-parent="#checkout-progress" href="#order-review"><span>4</span>ORDER REVIEW</a>
                             </div>
                             <div id="order-review" class="panel-collapse collapse detail-content">
                                 <div class="panel-body">
@@ -317,12 +146,15 @@
                                                         <td>Qty</td>
                                                         <td>Subtotal</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>Cras neque metus</td>
-                                                        <td><p class="tabletextp">&dollar;155</p></td>
-                                                        <td>1</td>
-                                                        <td><p class="tabletextp">&dollar;155.00</p></td>
-                                                    </tr>
+
+                                                    @foreach(Cart::instance('cart')->content() as $row)
+                                                        <tr>
+                                                            <td>{{ $row->name }}</td>
+                                                            <td><p class="tabletextp">Rp {{ number_format($row->price,0,',','.') }}</p></td>
+                                                            <td>{{ $row->qty }}</td>
+                                                            <td><p class="tabletextp">Rp {{ number_format($row->price*$row->qty,0,',','.') }}</p></td>
+                                                        </tr>
+                                                    @endforeach
                                                     <tr>
                                                         <td colspan="3">
                                                             <p class="tabletext">Subtotal</p>
@@ -330,9 +162,9 @@
                                                             <p class="tabletext">Grand Total</p>
                                                         </td>
                                                         <td>
-                                                            <p class="tabletextp">&dollar;155.00</p>
-                                                            <p class="tabletextp">&dollar;5.00</p>
-                                                            <p class="tabletextp">&dollar;160.00</p>
+                                                            <p class="tabletextp">Rp {{ \Cart::instance('cart')->subtotal() }}</p>
+                                                            <p class="tabletextp">FREE</p>
+                                                            <p class="tabletextp">Rp {{ \Cart::instance('cart')->total() }}</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -367,12 +199,11 @@
                         </ul>
                     </div>
                 </div>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
     <!--End Checkout information area -->
-
-
 @endsection
 
 @push('plugin_scripts')
