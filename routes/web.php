@@ -86,6 +86,15 @@ Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() 
         Route::get('/gallery/delete/{id}', 'Master\ProductController@destroy_gallery')->name('.gallery.destroy');
         Route::get('/detail/{id}', 'Master\ProductController@show')->name('.show');
     });
+
+    Route::group(['prefix' => 'transaction', 'as'=>'transaction'], function() {
+        Route::get('/', 'Master\TransactionController@index')->name('.manage');
+        Route::get('/detail/{id}', 'Master\TransactionController@show')->name('.show');
+        Route::post('/approve', 'Master\TransactionController@approve')->name('.approve');
+        Route::post('/decline', 'Master\TransactionController@decline')->name('.decline');
+        Route::post('/cancel', 'Master\TransactionController@cancel')->name('.cancel');
+
+    });
 });
 
 //Route Member
