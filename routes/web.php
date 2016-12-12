@@ -93,7 +93,10 @@ Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() 
         Route::post('/approve', 'Master\TransactionController@approve')->name('.approve');
         Route::post('/decline', 'Master\TransactionController@decline')->name('.decline');
         Route::post('/cancel', 'Master\TransactionController@cancel')->name('.cancel');
-
+    });
+    Route::group(['prefix' => 'report', 'as'=>'report'], function() {
+        Route::get('/', 'Master\ReportController@index')->name('.index');
+        Route::post('/transaction', 'Master\ReportController@transaction')->name('.transaction');
     });
 });
 
