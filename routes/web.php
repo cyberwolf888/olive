@@ -63,6 +63,15 @@ Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() 
         Route::get('/detail/{id}', 'Master\MemberController@show')->name('.show');
     });
 
+    //admin route
+    Route::group(['prefix' => 'admin', 'as'=>'admin'], function() {
+        Route::get('/', 'Master\AdminController@index')->name('.manage');
+        Route::get('/create', 'Master\AdminController@create')->name('.create');
+        Route::post('/create', 'Master\AdminController@store')->name('.store');
+        Route::get('/edit/{id}', 'Master\AdminController@edit')->name('.edit');
+        Route::post('/edit/{id}', 'Master\AdminController@update')->name('.update');
+    });
+
     //category route
     Route::group(['prefix' => 'category', 'as'=>'category'], function() {
         Route::get('/', 'Master\CategoryController@index')->name('.manage');
@@ -94,9 +103,15 @@ Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() 
         Route::post('/decline', 'Master\TransactionController@decline')->name('.decline');
         Route::post('/cancel', 'Master\TransactionController@cancel')->name('.cancel');
     });
+
     Route::group(['prefix' => 'report', 'as'=>'report'], function() {
         Route::get('/', 'Master\ReportController@index')->name('.index');
         Route::post('/transaction', 'Master\ReportController@transaction')->name('.transaction');
+    });
+
+    Route::group(['prefix' => 'profile', 'as'=>'profile'], function() {
+        Route::get('/', 'Master\ProfileController@index')->name('.index');
+        Route::post('/edit/{id}', 'Master\ProfileController@update')->name('.update');
     });
 });
 

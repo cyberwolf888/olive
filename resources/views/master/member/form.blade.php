@@ -65,7 +65,7 @@
             <div class="col s12 m12 l6">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">Date User</span><br>
+                        <span class="card-title">Data User</span><br>
                         <div class="row">
                             <div class="input-field col s12">
                                 <input name="email" id="email" type="email" class="validate" value="{{ $user->email }}" required="" aria-required="true">

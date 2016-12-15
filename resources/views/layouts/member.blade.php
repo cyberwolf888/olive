@@ -89,90 +89,31 @@
                 <div class="header-title col s3 m3">
                     <span class="chapter-title">Olive</span>
                 </div>
-                <form class="left search col s6 hide-on-small-and-down">
-                    <div class="input-field">
-                        <input id="search" type="search" placeholder="Search" autocomplete="off">
-                        <label for="search"><i class="material-icons search-icon">search</i></label>
-                    </div>
-                    <a href="javascript: void(0)" class="close-search"><i class="material-icons">close</i></a>
-                </form>
                 <ul class="right col s9 m3 nav-right-menu">
-
-                    <li class="hide-on-small-and-down"><a href="javascript:void(0)" data-activates="dropdown1" class="dropdown-button dropdown-right show-on-large"><i class="material-icons">notifications_none</i><span class="badge">4</span></a></li>
+                    <?php $new_order = \App\Models\Transaction::where('status',\App\Models\Transaction::NEW_ORDER)->count(); ?>
+                    <li class="hide-on-small-and-down"><a href="javascript:void(0)" data-activates="dropdown1" class="dropdown-button dropdown-right show-on-large"><i class="material-icons">notifications_none</i>@if($new_order>0)<span class="badge">{{$new_order}}</span>@endif</a></li>
                     <li class="hide-on-med-and-up"><a href="javascript:void(0)" class="search-toggle"><i class="material-icons">search</i></a></li>
                 </ul>
 
                 <ul id="dropdown1" class="dropdown-content notifications-dropdown">
-                    <li class="notificatoins-dropdown-container">
-                        <ul>
-                            <li class="notification-drop-title">Today</li>
-                            <li>
-                                <a href="#!">
-                                    <div class="notification">
-                                        <div class="notification-icon circle cyan"><i class="material-icons">done</i></div>
-                                        <div class="notification-text"><p><b>Alan Grey</b> uploaded new theme</p><span>7 min ago</span></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#!">
-                                    <div class="notification">
-                                        <div class="notification-icon circle deep-purple"><i class="material-icons">cached</i></div>
-                                        <div class="notification-text"><p><b>Tom</b> updated status</p><span>14 min ago</span></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#!">
-                                    <div class="notification">
-                                        <div class="notification-icon circle red"><i class="material-icons">delete</i></div>
-                                        <div class="notification-text"><p><b>Amily Lee</b> deleted account</p><span>28 min ago</span></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#!">
-                                    <div class="notification">
-                                        <div class="notification-icon circle cyan"><i class="material-icons">person_add</i></div>
-                                        <div class="notification-text"><p><b>Tom Simpson</b> registered</p><span>2 hrs ago</span></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#!">
-                                    <div class="notification">
-                                        <div class="notification-icon circle green"><i class="material-icons">file_upload</i></div>
-                                        <div class="notification-text"><p>Finished uploading files</p><span>4 hrs ago</span></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="notification-drop-title">Yestarday</li>
-                            <li>
-                                <a href="#!">
-                                    <div class="notification">
-                                        <div class="notification-icon circle green"><i class="material-icons">security</i></div>
-                                        <div class="notification-text"><p>Security issues fixed</p><span>16 hrs ago</span></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#!">
-                                    <div class="notification">
-                                        <div class="notification-icon circle indigo"><i class="material-icons">file_download</i></div>
-                                        <div class="notification-text"><p>Finished downloading files</p><span>22 hrs ago</span></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#!">
-                                    <div class="notification">
-                                        <div class="notification-icon circle cyan"><i class="material-icons">code</i></div>
-                                        <div class="notification-text"><p>Code changes were saved</p><span>1 day ago</span></div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    @if($new_order>0)
+                        <?php $tr = \App\Models\Transaction::where('status',\App\Models\Transaction::NEW_ORDER)->get(); ?>
+                        <li class="notificatoins-dropdown-container">
+                            <ul>
+                                <li class="notification-drop-title">New Transaction</li>
+                                @foreach($tr as $row)
+                                    <li>
+                                        <a href="{{ route('transaction.show',['id'=>$row->id]) }}">
+                                            <div class="notification">
+                                                <div class="notification-icon circle green"><i class="material-icons">add_shopping_cart</i></div>
+                                                <div class="notification-text"><p>Rp {{ number_format($row->total,0,',','.') }} | {{ $row->fullname }}</p><span>{{ date('d F Y, H:i',strtotime($row->created_at)) }}</span></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </nav>
@@ -187,16 +128,26 @@
                     <img src="{{ url('assets/master') }}/images/profile-image.png" class="circle" alt="">
                 </div>
                 <div class="sidebar-profile-info">
-                    <a href="javascript:void(0);" class="account-settings-link">
-                        <p>David Doe</p>
-                        <span>david@gmail.com</span>
+                    <a href="javascript:void(0);" >
+                        <p>{{ \Illuminate\Support\Facades\Auth::user()->name }}</p>
+                        <span>{{ \Illuminate\Support\Facades\Auth::user()->email }}</span>
                     </a>
                 </div>
             </div>
             <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
-                <li class="no-padding active"><a class="waves-effect waves-grey active" href="{{ url('master') }}"><i class="material-icons">settings_input_svideo</i>Dashboard</a></li>
-                <li class="no-padding"><a class="waves-effect waves-grey" href="{{ url('master/category') }}"><i class="material-icons">trending_up</i>Category</a></li>
-                <li class="no-padding"><a class="waves-effect waves-grey" href="{{ url('master/category') }}"><i class="material-icons">trending_up</i>Report</a></li>
+                <li class="no-padding"><a class="waves-effect waves-grey" href="{{ url('master') }}"><i class="material-icons">settings_input_svideo</i>Dashboard</a></li>
+                <li class="no-padding"><a class="waves-effect waves-grey" href="{{ route('transaction.manage') }}"><i class="material-icons">shopping_cart</i>Transaction</a></li>
+                <li class="no-padding">
+                    <a class="waves-effect waves-grey" href="{{ route('profile.index') }}"><i class="material-icons">account_circle</i>Profile</a>
+                </li>
+                <li class="no-padding">
+                    <a class="waves-effect waves-grey" href="{{ url('logout') }}"  onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        <i class="material-icons">exit_to_app</i>Sign Out
+                    </a>
+                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </li>
             </ul>
             <div class="footer">
                 <p class="copyright">Bedebah Dev ©</p>
