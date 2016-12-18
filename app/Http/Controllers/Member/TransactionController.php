@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Controllers\Member;
+
+use App\Models\Transaction;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Auth;
+
+class TransactionController extends Controller
+{
+    public function index()
+    {
+        $model = Transaction::where('member_id', Auth::user()->member->id)->get();
+        return view('member/transaction/manage',[
+            'model'=>$model
+        ]);
+    }
+
+    public function show($id)
+    {
+        $model = Transaction::findOrFail($id);
+        return view('member/transaction/detail',[
+            'model'=>$model
+        ]);
+    }
+}

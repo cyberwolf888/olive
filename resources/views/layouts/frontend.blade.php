@@ -69,6 +69,7 @@
                                         <li><a href="{{ url('/master') }}">Administrator</a></li>
                                     @endrole
                                     @role('member')
+                                        <li><a href="{{ url('/payment') }}">Payment</a></li>
                                         <li><a href="{{ url('/member') }}">My Account</a></li>
                                     @endrole
                                 </ul>
@@ -184,63 +185,24 @@
                     <div class="mobile-menu hidden-md hidden-lg">
                         <nav id="dropdown">
                             <ul>
-                                <li><a href="index-2.html">Home</a>
+                                <li><a href="{{ url('/') }}">Home</a></li>
+                                <li><a href="{{ url('/sale') }}">Sale</a></li>
+                                <li><a href="#">Category</a>
                                     <ul>
-                                        <li><a href="index-2.html">home-1</a></li>
-                                        <li><a href="index-3.html">home-2</a></li>
-                                        <li><a href="index-4.html">home-3</a></li>
-                                        <li><a href="index-5.html">home-4</a></li>
+                                        @foreach(\App\Models\Category::all() as $category)
+                                            <li><a href="{{ route('category',$category->id) }}">{{ $category->name }}</a></li>
+                                        @endforeach
                                     </ul>
                                 </li>
-                                <li><a href="shop.html">men</a>
-                                    <ul>
-                                        <li><a href="#">men</a>
-                                            <ul>
-                                                <li><a href="#">jeckets</a></li>
-                                                <li><a href="#">blazers</a></li>
-                                                <li><a href="#">suits</a></li>
-                                                <li><a href="#">trousers</a></li>
-                                                <li><a href="#">jeans</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">women</a>
-                                            <ul>
-                                                <li><a href="#">tees & tanks</a></li>
-                                                <li><a href="#">pants & jeans</a></li>
-                                                <li><a href="#">skirts & dresses</a></li>
-                                                <li><a href="#">accessories</a></li>
-                                                <li><a href="#">shoes</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">accessories</a>
-                                            <ul>
-                                                <li><a href="#">bags</a></li>
-                                                <li><a href="#">shoes</a></li>
-                                                <li><a href="#">gift card</a></li>
-                                                <li><a href="#">jewellery</a></li>
-                                                <li><a href="#">jackets</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a href="shop.html">women</a></li>
-                                <li><a href="shop.html">Accessories</a></li>
-                                <li><a href="#">blog</a>
-                                    <ul>
-                                        <li><a href="blog.html">Blog Details</a></li>
-                                        <li><a href="blog-left-sidebar.html">Blog left sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Pages</a>
-                                    <ul>
-                                        <li><a href="shop.html">Shop</a></li>
-                                        <li><a href="product-detail.html">Product Detail</a></li>
-                                        <li><a href="cart.html">Cart page</a></li>
-                                        <li><a href="checkout.html">Checkout Page</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact.html">contact</a></li>
+                                <li><a href="{{ url('/newitem') }}">New Item</a></li>
+                                <li><a href="{{ url('/contact') }}">contact</a></li>
+                                @role('admin')
+                                <li><a href="{{ url('/master') }}">Administrator</a></li>
+                                @endrole
+                                @role('member')
+                                <li><a href="{{ url('/payment') }}">Payment</a></li>
+                                <li><a href="{{ url('/member') }}">My Account</a></li>
+                                @endrole
                             </ul>
                         </nav>
                     </div>

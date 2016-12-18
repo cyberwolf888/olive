@@ -5,7 +5,7 @@
 <head>
 
     <!-- Title -->
-    <title>Olive | Master</title>
+    <title>Olive | Member</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta charset="UTF-8">
@@ -90,14 +90,14 @@
                     <span class="chapter-title">Olive</span>
                 </div>
                 <ul class="right col s9 m3 nav-right-menu">
-                    <?php $new_order = \App\Models\Transaction::where('status',\App\Models\Transaction::NEW_ORDER)->count(); ?>
+                    <?php $new_order = \App\Models\Transaction::where('status',\App\Models\Transaction::NEW_ORDER)->where('member_id', Auth::user()->member->id)->count(); ?>
                     <li class="hide-on-small-and-down"><a href="javascript:void(0)" data-activates="dropdown1" class="dropdown-button dropdown-right show-on-large"><i class="material-icons">notifications_none</i>@if($new_order>0)<span class="badge">{{$new_order}}</span>@endif</a></li>
                     <li class="hide-on-med-and-up"><a href="javascript:void(0)" class="search-toggle"><i class="material-icons">search</i></a></li>
                 </ul>
 
                 <ul id="dropdown1" class="dropdown-content notifications-dropdown">
                     @if($new_order>0)
-                        <?php $tr = \App\Models\Transaction::where('status',\App\Models\Transaction::NEW_ORDER)->get(); ?>
+                        <?php $tr = \App\Models\Transaction::where('status',\App\Models\Transaction::NEW_ORDER)->where('member_id', Auth::user()->member->id)->get(); ?>
                         <li class="notificatoins-dropdown-container">
                             <ul>
                                 <li class="notification-drop-title">New Transaction</li>
@@ -135,10 +135,10 @@
                 </div>
             </div>
             <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
-                <li class="no-padding"><a class="waves-effect waves-grey" href="{{ url('master') }}"><i class="material-icons">settings_input_svideo</i>Dashboard</a></li>
-                <li class="no-padding"><a class="waves-effect waves-grey" href="{{ route('transaction.manage') }}"><i class="material-icons">shopping_cart</i>Transaction</a></li>
+                <li class="no-padding"><a class="waves-effect waves-grey" href="{{ url('member') }}"><i class="material-icons">settings_input_svideo</i>Dashboard</a></li>
+                <li class="no-padding"><a class="waves-effect waves-grey" href="{{ route('member.transaction.manage') }}"><i class="material-icons">shopping_cart</i>Transaction</a></li>
                 <li class="no-padding">
-                    <a class="waves-effect waves-grey" href="{{ route('profile.index') }}"><i class="material-icons">account_circle</i>Profile</a>
+                    <a class="waves-effect waves-grey" href="{{ route('member.profile.index') }}"><i class="material-icons">account_circle</i>Profile</a>
                 </li>
                 <li class="no-padding">
                     <a class="waves-effect waves-grey" href="{{ url('logout') }}"  onclick="event.preventDefault();document.getElementById('logout-form').submit();">

@@ -116,7 +116,17 @@ Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() 
 });
 
 //Route Member
-Route::group(['prefix' => 'member', 'middleware' => ['auth','role:member']], function() {
+Route::group(['prefix' => 'member', 'middleware' => ['auth','role:member'], 'as'=>'member'], function() {
     Route::get('/', 'Member\DashboardController@index');
+
+    Route::group(['prefix' => 'transaction', 'as'=>'.transaction'], function() {
+        Route::get('/', 'Member\TransactionController@index')->name('.manage');
+        Route::get('/detail/{id}', 'Member\TransactionController@show')->name('.show');
+    });
+
+    Route::group(['prefix' => 'profile', 'as'=>'.profile'], function() {
+        Route::get('/', 'Member\ProfileController@index')->name('.index');
+        Route::post('/edit/{id}', 'Member\ProfileController@update')->name('.update');
+    });
 });
 
