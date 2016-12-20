@@ -48,6 +48,12 @@ Route::get('/invoice/{id}', 'CartController@invoice')->name('cart.invoice');
 Route::get('/payment', 'CartController@payment')->name('cart.payment');
 Route::post('/payment', 'CartController@prosesPayment')->name('cart.payment.proses');
 
+Route::get('/sms', function (){
+    //exec('cd gammu');
+    chdir('gammu');
+    exec('gammu sendsms TEXT 082247464196 -text "ini adalah bedebah"');
+    return null;
+});
 
 // Route master
 Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() {

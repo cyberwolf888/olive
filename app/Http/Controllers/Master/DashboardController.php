@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\Models\Member;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +18,18 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('master/dashboard/index');
+        $start_date = date("Y-m-d");
+        $end_date = date("Y-m-d", strtotime('-1 week', strtotime($start_date)));
+        $sales = Transaction::where('created_at','>=',$end_date)->where('created_at','<=',$start_date)->sum('total');
+        $count_transaction = Transaction::where('created_at','>=',$end_date)->where('created_at','<=',$start_date)->count('id');
+        $member = Member::where('created_at','>=',date("Y-m-d", strtotime('-4 week', strtotime($start_date))))->where('created_at','<=',$start_date)->count('id');
+        $transaction = Transaction::limit(5)->orderBy('id','DESC')->get();
+        return view('master/dashboard/index',[
+            'sales'=>$sales,
+            'member'=>$member,
+            'count_transaction'=>$count_transaction,
+            'transaction'=>$transaction
+        ]);
     }
 
     /**

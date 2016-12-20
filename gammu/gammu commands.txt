@@ -1,0 +1,10 @@
+install
+gammu-smsd -i -c smsdrc -n gammuSMSD
+
+run 
+gammu-smsd -s -c smsdrc -n gammuSMSD
+
+uninstall
+gammu-smsd -u -c smsdrc -n gammuSMSD
+
+gammu --identify
