@@ -48,10 +48,12 @@ Route::get('/invoice/{id}', 'CartController@invoice')->name('cart.invoice');
 Route::get('/payment', 'CartController@payment')->name('cart.payment');
 Route::post('/payment', 'CartController@prosesPayment')->name('cart.payment.proses');
 
+Route::get('/search', 'HomeController@search')->name('search');
+
 Route::get('/sms', function (){
     //exec('cd gammu');
-    chdir('gammu');
-    exec('gammu sendsms TEXT 082247464196 -text "ini adalah bedebah"');
+    $sms = new \App\Models\Sms();
+    $sms->send('082247464196','Pesanan Baru | No.Pesanan : #1 | Total : Rp.1.200.000.');
     return null;
 });
 
@@ -115,6 +117,12 @@ Route::group(['prefix' => 'master', 'middleware' => ['role:admin']], function() 
         Route::post('/transaction', 'Master\ReportController@transaction')->name('.transaction');
     });
 
+    Route::group(['prefix' => 'promotion', 'as'=>'promotion'], function() {
+        Route::get('/', 'Master\PromotionController@index')->name('.index');
+        Route::post('/process', 'Master\PromotionController@process')->name('.process');
+        Route::get('/delete/{id}', 'Master\PromotionController@delete')->name('.delete');
+    });
+
     Route::group(['prefix' => 'profile', 'as'=>'profile'], function() {
         Route::get('/', 'Master\ProfileController@index')->name('.index');
         Route::post('/edit/{id}', 'Master\ProfileController@update')->name('.update');
@@ -128,6 +136,7 @@ Route::group(['prefix' => 'member', 'middleware' => ['auth','role:member'], 'as'
     Route::group(['prefix' => 'transaction', 'as'=>'.transaction'], function() {
         Route::get('/', 'Member\TransactionController@index')->name('.manage');
         Route::get('/detail/{id}', 'Member\TransactionController@show')->name('.show');
+        Route::post('/approve', 'Member\TransactionController@approve')->name('.approve');
     });
 
     Route::group(['prefix' => 'profile', 'as'=>'.profile'], function() {

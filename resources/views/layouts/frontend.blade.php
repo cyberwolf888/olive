@@ -91,9 +91,9 @@
                                 <li>
                                     <a href="#" class="cart-toggler search-icon"><i class="fa fa-search"></i></a>
                                     <div class="header-bottom-search">
-                                        <form action="#" method="POST">
+                                        <form action="{{ route('search') }}" method="get">
                                             <div>
-                                                <input value="" placeholder="Search" autocomplete="off" type="text">
+                                                <input value="" placeholder="Search" autocomplete="off" type="text" name="keyword" required>
                                                 <button class="btn-search" type="submit">
                                                     <i class="fa fa-search"></i>
                                                 </button>

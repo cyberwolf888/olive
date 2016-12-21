@@ -15,7 +15,7 @@
 
     <!-- Styles -->
     <link type="text/css" rel="stylesheet" href="{{ url('assets/master') }}/plugins/materialize/css/materialize.min.css"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{ url('assets/master') }}/icons/material-icons.css" rel="stylesheet">
     <link href="{{ url('assets/master') }}/plugins/material-preloader/css/materialPreloader.min.css" rel="stylesheet">
     <link href="{{ url('assets/master') }}/plugins/metrojs/MetroJs.min.css" rel="stylesheet">
     <link href="{{ url('assets/master') }}/plugins/weather-icons-master/css/weather-icons.min.css" rel="stylesheet">
@@ -149,6 +149,7 @@
                     </div>
                 </li>
                 <li class="no-padding"><a class="waves-effect waves-grey" href="{{ route('report.index') }}"><i class="material-icons">assessment</i>Report</a></li>
+                <li class="no-padding"><a class="waves-effect waves-grey" href="{{ route('promotion.index') }}"><i class="material-icons">rss_feed</i>Promotion</a></li>
                 <li class="no-padding">
                     <a class="waves-effect waves-grey" href="{{ route('profile.index') }}"><i class="material-icons">account_circle</i>Profile</a>
                 </li>

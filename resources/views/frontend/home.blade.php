@@ -54,7 +54,7 @@
                         <a href="#"><i class="pe-7s-world"></i></a>
                     </div>
                     <h2 class="shipping-title"><a href="#">FREE SHIPPING</a></h2>
-                    <p class="info">Free shipping on all UK order</p>
+                    <p class="info">Free shipping on all Indonesia order</p>
                 </div>
                 <div class="free-shiping col-sm-3 col-xs-12">
                     <div class="fc-icon">
@@ -83,61 +83,6 @@
     </section>
     <!--End Service icon-->
 
-    <!-- banner area sart -->
-    <section id="banner" class="section-banner-area home4">
-        <div class="banner-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <!-- left side single banner -->
-                        <div class="single-banner">
-                            <div class="top-image l-top-img">
-                                <a href="#" class="single-image">
-                                    <img src="{{ url('assets/img/banner/01_home-4.jpg') }}" alt="">
-                                </a>
-                            </div>
-                            <div class="bottom-image l-long-img">
-                                <a href="#" class="single-image">
-                                    <img class="left-b-img" src="{{ url('assets/img/banner/02_home-4.jpg') }}" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <!-- End left side single banner -->
-                    </div>
-                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                        <!-- left side single banner -->
-                        <div class="single-banner">
-                            <div class="top-image">
-                                <a href="#" class="single-image r-top-image">
-                                    <img src="{{ url('assets/img/banner/03_home-4.jpg') }}" alt="">
-                                    <h2 class="c-text text-uppercase">new <br> trends <br> for women</h2>
-                                    <p class="shop-now text-uppercase">shop now</p>
-                                </a>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="bottom-image">
-                                        <a href="#" class="single-image">
-                                            <img class="cen-b-img" src="{{ url('assets/img/banner/04_home-4.jpg') }}" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="bottom-image no-margin">
-                                        <a href="#" class="single-image">
-                                            <img class="cen-br-img" src="{{ url('assets/img/banner/05_home-4.jpg') }}" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End left side single banner -->
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end banner area -->
 
     <!-- section new arrivals products -->
     <section id="new-arrivals" class="section-new-arrivals home4 section-padding">

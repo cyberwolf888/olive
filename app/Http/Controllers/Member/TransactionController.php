@@ -24,4 +24,12 @@ class TransactionController extends Controller
             'model'=>$model
         ]);
     }
+
+    public function approve(Request $request)
+    {
+        $model = Transaction::findOrFail($request->transaction_id);
+        $model->status = Transaction::FINISH;
+        $model->save();
+        return redirect()->back();
+    }
 }

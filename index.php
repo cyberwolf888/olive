@@ -1,5 +1,5 @@
 <?php
-
+chdir('gammu');
 /**
  * Laravel - A PHP Framework For Web Artisans
  *

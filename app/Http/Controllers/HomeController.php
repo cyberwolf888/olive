@@ -45,7 +45,7 @@ class HomeController extends Controller
         $product = Product::where('available',1)
             ->where('isSale',1)
             ->orderBy('id', 'desc')
-            ->paginate(2);
+            ->paginate(12);
 
         return view('frontend/sale',[
             'product'=>$product
@@ -86,6 +86,18 @@ class HomeController extends Controller
             redirect(url('contact'))->with('success', 'Message has been sent!');
         }
         return view('frontend/contact');
+    }
+
+    public function search(Request $request)
+    {
+        $product = Product::where('available',1)
+            ->where('name', 'like', '%'.$request->keyword.'%')
+            ->orderBy('id', 'desc')
+            ->paginate(12);
+        //dd($request->keyword);
+        return view('frontend/search',[
+            'product'=>$product
+        ]);
     }
 
 }

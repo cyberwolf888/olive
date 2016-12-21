@@ -15,7 +15,7 @@ class CategoryController extends Controller
         $product = Product::where('category_id',$model->id)
             ->where('available',1)
             ->orderBy('id', 'desc')
-            ->paginate(2);
+            ->paginate(12);
         return view('frontend/category',[
             'model'=>$model,
             'product'=>$product

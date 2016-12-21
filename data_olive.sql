@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 09 Des 2016 pada 08.27
+-- Generation Time: 21 Des 2016 pada 06.40
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -94,8 +94,8 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`id`, `user_id`, `fullname`, `phone`, `address`, `state`, `zip_code`, `created_at`, `updated_at`) VALUES
-(1, 10, 'I Made Hendra Wijaya', '82247464196', 'Jalan Wisnu Marga Belayu No 19', 'Bali', '82181', '2016-10-26 00:44:30', '2016-10-26 00:56:43'),
-(2, 11, 'Bedebah', '082247464196', 'Jalan raya niti mandala renon', 'Bali', '80226', '2016-10-26 01:13:36', '2016-10-26 01:13:36');
+(1, 10, 'I Made Hendra Wijaya', '082247464196', 'Jalan Wisnu Marga Belayu No 19', 'Bali', '82181', '2016-10-26 00:44:30', '2016-12-18 03:29:25'),
+(2, 11, 'Bedebah', '082247464193', 'Jalan raya niti mandala renon', 'Bali', '80226', '2016-10-26 01:13:36', '2016-10-26 01:13:36');
 
 -- --------------------------------------------------------
 
@@ -150,8 +150,7 @@ CREATE TABLE `payment` (
 --
 
 INSERT INTO `payment` (`id`, `transaction_id`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, '210ef2b920f7a39b7c52e9fd89e22c92.jpg', 0, '2016-12-08 23:21:34', '2016-12-08 23:21:34'),
-(2, 2, '0bd82e617676ac290355de3b1fbd1fe7.jpg', 0, '2016-12-08 23:24:18', '2016-12-08 23:24:18');
+(1, 1, '210ef2b920f7a39b7c52e9fd89e22c92.jpg', 0, '2016-12-08 23:21:34', '2016-12-08 23:21:34');
 
 -- --------------------------------------------------------
 
@@ -304,7 +303,8 @@ CREATE TABLE `role_user` (
 INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
 (1, 1),
 (10, 2),
-(11, 2);
+(11, 2),
+(12, 1);
 
 -- --------------------------------------------------------
 
@@ -325,7 +325,7 @@ CREATE TABLE `subscribe` (
 
 INSERT INTO `subscribe` (`id`, `phone`, `created_at`, `updated_at`) VALUES
 (1, '0857373637367', '2016-11-09 18:24:37', '2016-11-09 18:24:37'),
-(2, '085737353569', '2016-11-09 18:25:00', '2016-11-09 18:25:00');
+(3, '0857373535568', '2016-12-19 00:17:10', '2016-12-19 00:17:10');
 
 -- --------------------------------------------------------
 
@@ -353,8 +353,8 @@ CREATE TABLE `transaction` (
 --
 
 INSERT INTO `transaction` (`id`, `member_id`, `fullname`, `phone`, `address`, `zip_code`, `state`, `total`, `status`, `resi`, `created_at`, `updated_at`) VALUES
-(1, 1, 'I Made Hendra Wijaya', '82247464196', 'Jalan Wisnu Marga Belayu No 19', '82181', 'Bali', '240000', 2, NULL, '2016-12-08 00:29:53', '2016-12-08 23:21:34'),
-(2, 1, 'I Made Hendra Wijaya', '82247464196', 'Jalan Wisnu Marga Belayu No 19', '82181', 'Bali', '1310000', 2, NULL, '2016-12-08 20:11:28', '2016-12-08 23:24:18');
+(1, 1, 'I Made Hendra Wijaya', '82247464196', 'Jalan Wisnu Marga Belayu No 19', '82181', 'Bali', '240000', 4, 'ACGK01160088158', '2016-12-08 00:29:53', '2016-12-20 20:20:34'),
+(2, 1, 'I Made Hendra Wijaya', '82247464196', 'Jalan Wisnu Marga Belayu No 19', '82181', 'Bali', '1310000', 0, NULL, '2016-12-08 20:11:28', '2016-12-20 20:03:30');
 
 -- --------------------------------------------------------
 
@@ -378,9 +378,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@mail.com', '$2y$10$dciJKMX9vjwb88Wm8F1Hv.lnjyO7qy5HV6/t2LEDPJsjjph/KjwT6', 'meg7QzYLU6Rir6qRkXv1JCjvCGiAF4wRVsD73kVHiBrWjYSevcBso2beIDud', 1, '2016-10-23 23:50:07', '2016-12-06 19:15:22'),
-(10, 'I Made Hendra Wijaya', 'wijaya.imd@gmail.com', '$2y$10$ROKg.x.eIPpK8a7iusnLQuCNgE9L8aIj2DP2okfiR4QRsz0y8hY4e', 'VZp49kBUQBhF7jPU6Je90ZrzOxlZTuZsxPoLqFLRvneqzTdE1FrHSxpPTxtf', 1, '2016-10-26 00:44:30', '2016-12-08 23:26:34'),
-(11, 'Bedebah', 'bedebah@mail.com', '$2y$10$GqIaNwBl9E7jDU5p32t/p.f3GL9HoOnuC5tErM/f18Os1b39xOpZy', '7Avqd6LFCp8EO1hozDnMWs2LQA4f9t02GN16edsJmlVAnzdCTP3qQl4sNvgP', 0, '2016-10-26 01:13:36', '2016-11-09 18:26:01');
+(1, 'Administrator', 'admin@mail.com', '$2y$10$bzPynNO6plLZHTvxz.mSdOjhLoygmcZg63vVFvhFeO070lf/.dmGe', 'PhSFQSfLk58bHHgJhzXu4dbY8WEhLAoEsxGZwCj3KIjuTXSD9gMt1wtm88Sm', 1, '2016-10-23 23:50:07', '2016-12-20 21:23:26'),
+(10, 'Bedebah Edan', 'wijaya.imd@gmail.com', '$2y$10$ot8aqFUtqXHnlK2lRA2Sv.FgMK841J5agdvdhcdFats3k8rGbFrMa', '67miqRRYsxluVwPFekM3eHLWvC3rLeiMDhHCXy19VHPxh1v4cg04Tc8JsH8p', 1, '2016-10-26 00:44:30', '2016-12-20 20:21:31'),
+(11, 'Bedebah', 'bedebah@mail.com', '$2y$10$b0XuVM1RhV3nyxGKbzR9euJ2Y4JWZpUmFTu1s0LdfdNwd.J5phwBy', '7Avqd6LFCp8EO1hozDnMWs2LQA4f9t02GN16edsJmlVAnzdCTP3qQl4sNvgP', 0, '2016-10-26 01:13:36', '2016-12-14 22:08:24'),
+(12, 'Admin Bedebah', 'admin@bedebah.com', '$2y$10$tFoNz28zj5c0v8igypiavOjIrSQ9TYcbzRCdS6AwtebKKEeuyFrBy', NULL, 0, '2016-12-14 21:58:28', '2016-12-14 22:12:40');
 
 --
 -- Indexes for dumped tables
@@ -516,7 +517,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
@@ -546,7 +547,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `subscribe`
 --
 ALTER TABLE `subscribe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `transaction`
 --
@@ -556,7 +557,7 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --

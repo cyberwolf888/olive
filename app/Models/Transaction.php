@@ -21,7 +21,7 @@ class Transaction extends Model
             '1'=>'New Order',
             '2'=>'Waiting to verified',
             '3'=>'Verified',
-            '4'=>'Done'
+            '4'=>'Complete'
         ];
         return $status[$index];
     }

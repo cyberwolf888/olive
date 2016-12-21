@@ -9,7 +9,11 @@
             <div class="col s12">
                 <div class="page-title">Detail Transaction</div>
             </div>
-
+            @if($model->status == \App\Models\Transaction::VERIFIED)
+                <div class="col s12">
+                    <a class="waves-effect waves-light btn green modal-trigger" href="#modal_approve"><i class="material-icons left">done</i>Barang telah diterima</a>
+                </div>
+            @endif
             <div class="col s12 m12 l6">
                 <div class="card">
                     <div class="card-content">
@@ -85,40 +89,10 @@
     </main>
     <!-- Modal Structure -->
     <div id="modal_approve" class="modal">
-        {!! Form::open(['route' => 'transaction.approve', 'method' => 'post']) !!}
+        {!! Form::open(['route' => 'member.transaction.approve', 'method' => 'post']) !!}
         <div class="modal-content">
             <h4>Approve</h4>
-            <p>Are you sure to approve this payment?</p>
-            <div class="input-field col s12">
-                {!! Form::text('resi', null,['class'=>'validate','required'=>'','aria-required'=>'true']) !!}
-                {!! Form::label('resi', 'No AWB/Resi', ['data-error' => 'wrong','data-success'=>'right']) !!}
-            </div>
-            {!! Form::hidden('transaction_id',$model->id) !!}
-        </div>
-        <div class="modal-footer">
-            {!! Form::submit('Agree',['class'=>'waves-effect waves-green btn-flat']) !!}
-            <a href="javascript:null;" class=" modal-action modal-close waves-effect waves-red btn-flat">Disagree</a>
-        </div>
-        {!! Form::close() !!}
-    </div>
-    <div id="modal_decline" class="modal">
-        {!! Form::open(['route' => 'transaction.decline', 'method' => 'post']) !!}
-        <div class="modal-content">
-            <h4>Decline</h4>
-            <p>Are you sure to decline this payment?</p>
-            {!! Form::hidden('transaction_id',$model->id) !!}
-        </div>
-        <div class="modal-footer">
-            {!! Form::submit('Agree',['class'=>'waves-effect waves-green btn-flat']) !!}
-            <a href="javascript:null;" class=" modal-action modal-close waves-effect waves-red btn-flat">Disagree</a>
-        </div>
-        {!! Form::close() !!}
-    </div>
-    <div id="modal_cacncel" class="modal">
-        {!! Form::open(['route' => 'transaction.cancel', 'method' => 'post']) !!}
-        <div class="modal-content">
-            <h4>Cancel</h4>
-            <p>Are you sure to cancel this transaction?</p>
+            <p>Apakah anda yakin sudah menerima barang pesanan anda?</p>
             {!! Form::hidden('transaction_id',$model->id) !!}
         </div>
         <div class="modal-footer">
