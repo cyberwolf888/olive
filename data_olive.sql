@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 21 Des 2016 pada 06.40
+-- Generation Time: 22 Des 2016 pada 05.34
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -379,7 +379,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Administrator', 'admin@mail.com', '$2y$10$bzPynNO6plLZHTvxz.mSdOjhLoygmcZg63vVFvhFeO070lf/.dmGe', 'PhSFQSfLk58bHHgJhzXu4dbY8WEhLAoEsxGZwCj3KIjuTXSD9gMt1wtm88Sm', 1, '2016-10-23 23:50:07', '2016-12-20 21:23:26'),
-(10, 'Bedebah Edan', 'wijaya.imd@gmail.com', '$2y$10$ot8aqFUtqXHnlK2lRA2Sv.FgMK841J5agdvdhcdFats3k8rGbFrMa', '67miqRRYsxluVwPFekM3eHLWvC3rLeiMDhHCXy19VHPxh1v4cg04Tc8JsH8p', 1, '2016-10-26 00:44:30', '2016-12-20 20:21:31'),
+(10, 'I Made Hendra Wijaya', 'member@gmail.com', '$2y$10$Qb0Owoq5mmRJDTOywu3OXuPkfQIy.GLM602vW0ix8fvMP5GI8Rlo.', 'rA0ODMwEbhooFJahcZ9gYekmlUwIby6Evemo9aH2uIAtpMtwGH85J3o2gqmu', 1, '2016-10-26 00:44:30', '2016-12-21 20:33:55'),
 (11, 'Bedebah', 'bedebah@mail.com', '$2y$10$b0XuVM1RhV3nyxGKbzR9euJ2Y4JWZpUmFTu1s0LdfdNwd.J5phwBy', '7Avqd6LFCp8EO1hozDnMWs2LQA4f9t02GN16edsJmlVAnzdCTP3qQl4sNvgP', 0, '2016-10-26 01:13:36', '2016-12-14 22:08:24'),
 (12, 'Admin Bedebah', 'admin@bedebah.com', '$2y$10$tFoNz28zj5c0v8igypiavOjIrSQ9TYcbzRCdS6AwtebKKEeuyFrBy', NULL, 0, '2016-12-14 21:58:28', '2016-12-14 22:12:40');
 

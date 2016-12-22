@@ -80,7 +80,7 @@
                     <div class="col-lg-3 col-md-2 col-sm-4 col-xs-6">
                         <!--header logo -->
                         <div class="logo home4">
-                            <a href="{{ url('/') }}"><img src="{{ url('assets/') }}/img/logo/logo1.png" alt="logo"></a>
+                            <a href="{{ url('/') }}"><img src="{{ url('assets/') }}/img/logo/logo.png" alt="logo"></a>
                         </div>
                     </div>
                     <!--end Header logo -->
