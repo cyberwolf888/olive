@@ -35,7 +35,7 @@
                         <!--  <div class="layear-1-2"><h2>Minimal & Modern look </h2></div> -->
                         <!-- <div class="b-text">collection</div> -->
                         <div class="shop-btn bt-lft">
-                            <a href="#" class="fn-button">shopping now</a>
+                            <a href="{{ url('sale') }}" class="fn-button">shopping now</a>
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
                                                                     <ul>
                                                                         <li>
                                                                             <div class="icon-list">
-                                                                                <a href="#"><span class="no"></span><i class="fa fa-shopping-cart"></i></a>
+                                                                                <a href="{{ url('product/'.$row->id) }}"><span class="no"></span><i class="fa fa-shopping-cart"></i></a>
                                                                                 <a href="{{ url('product/'.$row->id) }}" class="modal-view detail-link quickview"><i class="fa fa-eye"></i></a>
                                                                             </div>
                                                                         </li>

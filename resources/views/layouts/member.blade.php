@@ -103,7 +103,7 @@
                                 <li class="notification-drop-title">New Transaction</li>
                                 @foreach($tr as $row)
                                     <li>
-                                        <a href="{{ route('transaction.show',['id'=>$row->id]) }}">
+                                        <a href="{{ route('member.transaction.show',['id'=>$row->id]) }}">
                                             <div class="notification">
                                                 <div class="notification-icon circle green"><i class="material-icons">add_shopping_cart</i></div>
                                                 <div class="notification-text"><p>Rp {{ number_format($row->total,0,',','.') }} | {{ $row->fullname }}</p><span>{{ date('d F Y, H:i',strtotime($row->created_at)) }}</span></div>
