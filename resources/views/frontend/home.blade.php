@@ -19,7 +19,7 @@
                             <h2>Minimal & Modern look </h2>
                         </div>
                         <!-- <div class="b-text">collection</div>  -->
-                        <a href="#" class="fn-button">shopping now</a>
+                        <a href="{{ url('sale') }}" class="fn-button">shopping now</a>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 22 Des 2016 pada 05.34
+-- Generation Time: 04 Jan 2017 pada 05.02
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -69,7 +69,8 @@ CREATE TABLE `detail_transaction` (
 INSERT INTO `detail_transaction` (`id`, `transaction_id`, `product_id`, `qty`, `price`, `total`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 2, 120000, 240000, '2016-12-08 00:29:53', '2016-12-08 00:29:53'),
 (2, 2, 3, 4, 230000, 920000, '2016-12-08 20:11:28', '2016-12-08 20:11:28'),
-(3, 2, 2, 3, 130000, 390000, '2016-12-08 20:11:28', '2016-12-08 20:11:28');
+(3, 2, 2, 3, 130000, 390000, '2016-12-08 20:11:28', '2016-12-08 20:11:28'),
+(4, 3, 3, 1, 230000, 230000, '2017-01-03 19:33:20', '2017-01-03 19:33:20');
 
 -- --------------------------------------------------------
 
@@ -150,7 +151,8 @@ CREATE TABLE `payment` (
 --
 
 INSERT INTO `payment` (`id`, `transaction_id`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, '210ef2b920f7a39b7c52e9fd89e22c92.jpg', 0, '2016-12-08 23:21:34', '2016-12-08 23:21:34');
+(1, 1, '210ef2b920f7a39b7c52e9fd89e22c92.jpg', 0, '2016-12-08 23:21:34', '2016-12-08 23:21:34'),
+(2, 3, '0f6921fb0653bae791a1a5ebadb1b458.jpg', 0, '2017-01-03 19:49:43', '2017-01-03 19:49:43');
 
 -- --------------------------------------------------------
 
@@ -354,7 +356,8 @@ CREATE TABLE `transaction` (
 
 INSERT INTO `transaction` (`id`, `member_id`, `fullname`, `phone`, `address`, `zip_code`, `state`, `total`, `status`, `resi`, `created_at`, `updated_at`) VALUES
 (1, 1, 'I Made Hendra Wijaya', '82247464196', 'Jalan Wisnu Marga Belayu No 19', '82181', 'Bali', '240000', 4, 'ACGK01160088158', '2016-12-08 00:29:53', '2016-12-20 20:20:34'),
-(2, 1, 'I Made Hendra Wijaya', '82247464196', 'Jalan Wisnu Marga Belayu No 19', '82181', 'Bali', '1310000', 0, NULL, '2016-12-08 20:11:28', '2016-12-20 20:03:30');
+(2, 1, 'I Made Hendra Wijaya', '82247464196', 'Jalan Wisnu Marga Belayu No 19', '82181', 'Bali', '1310000', 0, NULL, '2016-12-08 20:11:28', '2016-12-20 20:03:30'),
+(3, 1, 'I Made Hendra Wijaya', '082247464196', 'Jalan Wisnu Marga Belayu No 19', '82181', 'Bali', '230000', 2, NULL, '2017-01-03 19:33:20', '2017-01-03 19:49:43');
 
 -- --------------------------------------------------------
 
@@ -378,8 +381,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', 'admin@mail.com', '$2y$10$bzPynNO6plLZHTvxz.mSdOjhLoygmcZg63vVFvhFeO070lf/.dmGe', 'PhSFQSfLk58bHHgJhzXu4dbY8WEhLAoEsxGZwCj3KIjuTXSD9gMt1wtm88Sm', 1, '2016-10-23 23:50:07', '2016-12-20 21:23:26'),
-(10, 'I Made Hendra Wijaya', 'member@gmail.com', '$2y$10$Qb0Owoq5mmRJDTOywu3OXuPkfQIy.GLM602vW0ix8fvMP5GI8Rlo.', 'rA0ODMwEbhooFJahcZ9gYekmlUwIby6Evemo9aH2uIAtpMtwGH85J3o2gqmu', 1, '2016-10-26 00:44:30', '2016-12-21 20:33:55'),
+(1, 'Administrator', 'admin@mail.com', '$2y$10$bzPynNO6plLZHTvxz.mSdOjhLoygmcZg63vVFvhFeO070lf/.dmGe', 'fxUJ51tqIJKBEJHnaFQ1Ovy9mN0oT16dOpLMIPlr428ktxRWiFtc0UvNSbL5', 1, '2016-10-23 23:50:07', '2017-01-03 20:00:07'),
+(10, 'I Made Hendra Wijaya', 'member@gmail.com', '$2y$10$Qb0Owoq5mmRJDTOywu3OXuPkfQIy.GLM602vW0ix8fvMP5GI8Rlo.', 'QBaI9VWng8B3bANO4D9352pT0KHVMJyaChc8HSlGjSPC5apFAhTpL0RSHg8g', 1, '2016-10-26 00:44:30', '2017-01-03 20:01:37'),
 (11, 'Bedebah', 'bedebah@mail.com', '$2y$10$b0XuVM1RhV3nyxGKbzR9euJ2Y4JWZpUmFTu1s0LdfdNwd.J5phwBy', '7Avqd6LFCp8EO1hozDnMWs2LQA4f9t02GN16edsJmlVAnzdCTP3qQl4sNvgP', 0, '2016-10-26 01:13:36', '2016-12-14 22:08:24'),
 (12, 'Admin Bedebah', 'admin@bedebah.com', '$2y$10$tFoNz28zj5c0v8igypiavOjIrSQ9TYcbzRCdS6AwtebKKEeuyFrBy', NULL, 0, '2016-12-14 21:58:28', '2016-12-14 22:12:40');
 
@@ -502,7 +505,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `detail_transaction`
 --
 ALTER TABLE `detail_transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `member`
 --
@@ -517,7 +520,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
@@ -537,7 +540,7 @@ ALTER TABLE `product_detail`
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `roles`
 --
@@ -552,7 +555,7 @@ ALTER TABLE `subscribe`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --

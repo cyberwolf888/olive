@@ -12,7 +12,7 @@
                                 </ul>
                             </div>
                             <span class="card-title">Sales</span>
-                            <span class="stats-counter">Rp <span class="counter">{{ number_format($sales,0,',','.') }}</span><small>This week</small></span>
+                            <span class="stats-counter">Rp <span class="">{{ number_format($sales,0,',','.') }}</span><small>This week</small></span>
                         </div>
                         <div class="progress stats-card-progress">
                             <div class="determinate" style="width: 100%"></div>

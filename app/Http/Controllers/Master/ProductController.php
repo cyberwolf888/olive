@@ -151,7 +151,7 @@ class ProductController extends Controller
         ]);
         $model = new ProductImages();
         //$path = $request->file('image')->storeAs('images/product/'.$id.'/',md5(str_random(12)).'.'.$request->image->extension());
-        $path = 'storage/app/images/product/'.$id.'/';
+        $path = storage_path().'/app/images/product/'.$id.'/';
         if(!File::exists($path)) {
             File::makeDirectory($path.$id, $mode = 0777, true, true);
         }

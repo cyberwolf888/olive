@@ -150,7 +150,7 @@ class CartController extends Controller
         $payment = new Payment();
         $transaction = Transaction::find($request->invoice);
 
-        $path = 'storage/app/images/payment/';
+        $path = storage_path() . '/app/images/payment/';
         $file = Image::make($request->file('proof'))->resize(800, 800)->encode('jpg', 80)->save($path.md5(str_random(12)).'.jpg');
         $payment->transaction_id = $transaction->id;
         $payment->image = $file->basename;
