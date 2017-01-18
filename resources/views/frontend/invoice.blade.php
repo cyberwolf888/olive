@@ -127,7 +127,7 @@
                                     <table>
                                         <tr>
                                             <td class="title">
-                                                <img src="" style="width:100%; max-width:300px;">
+                                                <img src="{{ url('assets/img/logo/15644939_1283846248349720_417921586_n.jpg') }}" style="width:100px; max-width:300px;">
                                             </td>
 
                                             <td>
@@ -145,8 +145,8 @@
                                     <table>
                                         <tr>
                                             <td>
-                                                Mahartha Handicraft, Inc.<br>
-                                                Jaln Merdeka<br>
+                                                Olive, Inc.<br>
+                                                Jalan Raya Denpasar<br>
                                                 0857373434348
                                             </td>
 
