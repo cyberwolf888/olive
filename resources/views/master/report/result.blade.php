@@ -65,11 +65,11 @@
 @push('plugin_scripts')
 <script src="{{ url('assets/master') }}/plugins/sweetalert/sweetalert.min.js"></script>
 <script src="{{ url('assets/master') }}/plugins/datatables/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.3/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.3/js/buttons.html5.min.js"></script>
+<script src="{{ url('assets/') }}/datatables/dataTables.buttons.min.js"></script>
+<script src="{{ url('assets/') }}/datatables/jszip.min.js"></script>
+<script src="{{ url('assets/') }}/datatables/pdfmake.min.js"></script>
+<script src="{{ url('assets/') }}/datatables/vfs_fonts.js"></script>
+<script src="{{ url('assets/') }}/datatables/buttons.html5.min.js"></script>
 @endpush
 
 @push('scripts')
