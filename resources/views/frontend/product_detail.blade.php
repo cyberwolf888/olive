@@ -102,7 +102,7 @@
                             <div class="choice-icon">
                                 <ul>
                                     <li>
-                                        <a id="btn_add" class="text-uppercase adtocart" href="javascript:null;">add to cart</a>
+                                        <a id="btn_add" class="text-uppercase adtocart" href="#">add to cart</a>
                                     </li>
                                 </ul>
                             </div>
